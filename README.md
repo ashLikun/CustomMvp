@@ -5,7 +5,7 @@ CustomMvp项目简介
 
 build.gradle文件中添加:
 
-   compile 'com.github.ashLikun:CustomMvp:1.0.2'//
+   compile 'com.github.ashLikun:CustomMvp:1.0.3'//
 
     compile 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
     compile 'com.github.ashLikun:XRecycleView:1.1.5'
