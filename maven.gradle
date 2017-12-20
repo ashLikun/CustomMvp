@@ -1,14 +1,7 @@
 apply plugin: 'com.github.dcendents.android-maven'
 // GitHub账户名
 group = 'com.github.ashLikun'
-task makeJar(type: Jar) {
-    //过滤不需要的class
-    exclude('android/', 'BuildConfig.class')
-//    exclude('android/',  'BuildConfig.class', 'R.class')
 
-    //指定打包的class
-    //include "com/test/**/*.class"
-}
 // 指定编码
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
