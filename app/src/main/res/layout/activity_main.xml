@@ -6,7 +6,7 @@
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.ashlikun.customcode.simple.MainActivity">
+        tools:context="com.ashlikun.core.simple.MainActivity">
 
         <TextView
             android:layout_width="wrap_content"

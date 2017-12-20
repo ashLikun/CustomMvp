@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-    package="com.ashlikun.customcode">
+    package="com.ashlikun.core">
 
     <application
         android:allowBackup="true"
