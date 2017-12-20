@@ -1,3 +1,5 @@
+[![Release](https://jitpack.io/v/ashLikun/CustomMvp.svg)](https://jitpack.io/#ashLikun/CustomMvp)
+
 CustomMvp项目简介
     项目Mvp框架
     基类activity和fragment
@@ -5,7 +7,7 @@ CustomMvp项目简介
 
 build.gradle文件中添加:
 
-   compile 'com.github.ashLikun:CustomMvp:1.0.3'//
+   compile 'com.github.ashLikun:CustomMvp:{latest version}'
 
     compile 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
     compile 'com.github.ashLikun:XRecycleView:1.1.5'
