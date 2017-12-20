@@ -30,7 +30,8 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    provided rootProject.ext.designVersion
+    compile rootProject.ext.v4Version
+    compile rootProject.ext.appcompat
     provided 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
     provided 'com.github.ashLikun:XRecycleView:1.1.5'
     provided 'com.github.ashLikun.CommonAdapter:databindadapter:1.1.9'
