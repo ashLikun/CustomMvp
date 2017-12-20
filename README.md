@@ -6,8 +6,21 @@ CustomMvp项目简介
 ## 使用方法
 
 build.gradle文件中添加:
+```gradle
+allprojects {
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+并且:
 
-   compile 'com.github.ashLikun:CustomMvp:{latest version}'
+```gradle
+dependencies {
+    compile 'com.github.ashLikun:CustomMvp:{latest version}'
+}
+```
+需要的其他依赖
 
     compile 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
     compile 'com.github.ashLikun:XRecycleView:1.1.5'
