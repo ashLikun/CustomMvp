@@ -29,17 +29,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile rootProject.ext.v4Version
-    compile rootProject.ext.appcompat
-    provided 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
-    provided 'com.github.ashLikun:XRecycleView:1.1.5'
-    provided 'com.github.ashLikun.CommonAdapter:databindadapter:1.1.9'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.v4Version
+    implementation rootProject.ext.appcompat
+    compileOnly 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
+    compileOnly 'com.github.ashLikun:XRecycleView:1.1.5'
+    compileOnly 'com.github.ashLikun.CommonAdapter:databindadapter:1.1.9'
 
-    provided 'com.github.ashLikun:CommonUtils:1.3.4'
-    provided 'com.github.ashLikun:CustomDialog:1.1.1'
-    provided 'com.github.ashLikun:LoadSwitch:1.0.4'
-    provided 'com.github.ashLikun:OkHttpUtils:1.4.2'
+    compileOnly 'com.github.ashLikun:CommonUtils:1.3.4'
+    compileOnly 'com.github.ashLikun:CustomDialog:1.1.1'
+    compileOnly 'com.github.ashLikun:LoadSwitch:1.0.4'
+    compileOnly 'com.github.ashLikun:OkHttpUtils:1.4.2'
 }
 
 apply from: '../maven.gradle'
