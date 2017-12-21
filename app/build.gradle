@@ -4,7 +4,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.ashlikun.customcode.simple"
+        applicationId "com.ashlikun.core.simple"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -17,6 +17,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            if (variant.buildType.isDebuggable()) {
+                outputFileName = 'APP_' + variant.versionName + "_" + 'debug.apk'
+            } else {
+                outputFileName = 'APP_' + variant.versionName + "_" + 'release.apk'
+            }
         }
     }
     repositories {
@@ -43,5 +52,5 @@ dependencies {
     implementation 'com.github.ashLikun:CustomDialog:1.1.1'
     implementation 'com.github.ashLikun:LoadSwitch:1.0.4'
     implementation 'com.github.ashLikun:OkHttpUtils:1.4.2'
-    compile  project(':library')
+    compile project(':library')
 }
