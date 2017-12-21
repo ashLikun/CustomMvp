@@ -8,6 +8,8 @@ import com.ashlikun.core.BasePresenter;
 import com.ashlikun.core.factory.PresenterFactoryImp;
 import com.ashlikun.core.iview.BaseView;
 
+import java.lang.reflect.ParameterizedType;
+
 /**
  * 作者　　: 李坤
  * 创建时间: 2017/12/19 15:34
@@ -40,12 +42,6 @@ public abstract class BaseMvpFragment<P extends BasePresenter, DB extends ViewDa
     @Override
     protected void baseInitView() {
         presenter = initPresenter();
-        if (presenter == null) {
-            presenter = PresenterFactoryImp.<P>createFactory(getClass()).create();
-        }
-        if (presenter == null) {
-            throw new RuntimeException("Presenter创建失败!检查是否声明了@Presenter(XXX.class)注解  或者 从写initPresenter方法");
-        }
     }
 
     @Override
@@ -98,8 +94,29 @@ public abstract class BaseMvpFragment<P extends BasePresenter, DB extends ViewDa
 
     /**
      * 实例化Presenter对象
+     * 优先使用注解,如果没注解，就调用这个方法
      *
-     * @return
+     * @return 生成Presenter
      */
-    public abstract P initPresenter();
+    public P initPresenter() {
+        P presenter = null;
+        if (presenter == null) {
+            presenter = PresenterFactoryImp.<P>createFactory(getClass()).create();
+        }
+        if (presenter == null) {
+            if (this instanceof BaseView && this.getClass().getGenericSuperclass() instanceof ParameterizedType
+                    && ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments().length > 0) {
+                Class _c = (Class) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+                try {
+                    presenter = (P) _c.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (presenter == null) {
+            throw new RuntimeException("Presenter创建失败!检查是否声明了@Presenter(XXX.class)注解  或者 从写initPresenter方法 或者当前View的泛型没用Presenter");
+        }
+        return presenter;
+    }
 }
