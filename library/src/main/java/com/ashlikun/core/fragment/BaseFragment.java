@@ -15,11 +15,12 @@ import com.ashlikun.loadswitch.MyOnLoadLayoutListener;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
 import com.ashlikun.supertoobar.SupperToolBar;
 import com.ashlikun.utils.ui.UiUtils;
+
 /**
  * 作者　　: 李坤
  * 创建时间: 2017/12/19 15:31
  * 邮箱　　：496546144@qq.com
- *
+ * <p>
  * 功能介绍：基类fragment
  */
 
@@ -165,10 +166,25 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
         super.onDetach();
     }
 
+    /**
+     * 作者　　: 李坤
+     * 创建时间: 2018/1/22 10:09
+     * 邮箱　　：496546144@qq.com
+     * <p>
+     * 方法功能：当activity返回的时候,需要配合activity调用
+     *
+     * @return false:默认不处理  true:fragment处理
+     */
+
+    public boolean onBackPressed() {
+        return false;
+    }
+
     @Override
     public void onLowMemory() {
         super.onLowMemory();
     }
+
     /**
      * 显示对话框，用于网络请求
      *
