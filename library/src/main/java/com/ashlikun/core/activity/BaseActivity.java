@@ -10,6 +10,7 @@ import android.view.View;
 import com.ashlikun.core.R;
 import com.ashlikun.core.iview.IActivityAndFragment;
 import com.ashlikun.customdialog.LoadDialog;
+import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.MyOnLoadLayoutListener;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
@@ -108,7 +109,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
     protected void baseInitView() {
         toolbar = (SupperToolBar) findViewById(R.id.toolbar);
         UiUtils.applyFont(UiUtils.getRootView(this));
-        loadSwitchService = LoadSwitchService.generate(getSwitchRoot(), new MyOnLoadLayoutListener(this, getOnLoadSwitchClick()));
+        View view = getSwitchRoot();
+        if (view != null) {
+            loadSwitchService = LoadSwitch.getDefault()
+                    .register(view, new MyOnLoadLayoutListener(this, getOnLoadSwitchClick()));
+        }
     }
 
     /**

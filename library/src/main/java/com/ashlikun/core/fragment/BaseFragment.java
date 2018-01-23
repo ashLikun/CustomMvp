@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.ashlikun.core.R;
 import com.ashlikun.core.activity.BaseActivity;
 import com.ashlikun.core.iview.IActivityAndFragment;
+import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.MyOnLoadLayoutListener;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
@@ -50,7 +51,7 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
      * 方法功能：布局
      */
 
-    protected View view;
+    protected View rootView;
 
     /**
      * 作者　　: 李坤
@@ -79,16 +80,20 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (view == null) {
+        if (rootView == null) {
             isRecycle = false;
-            view = UiUtils.getInflaterView(activity, getLayoutId());
-            UiUtils.applyFont(view);
-            toolbar = (SupperToolBar) view.findViewById(R.id.toolbar);
-            loadSwitchService = LoadSwitchService.generate(getSwitchRoot(), new MyOnLoadLayoutListener(getContext(), getOnLoadSwitchClick()));
+            rootView = UiUtils.getInflaterView(activity, getLayoutId());
+            UiUtils.applyFont(rootView);
+            toolbar = (SupperToolBar) rootView.findViewById(R.id.toolbar);
+            View viewSwitch = getSwitchRoot();
+            if (viewSwitch != null) {
+                loadSwitchService = LoadSwitch.getDefault()
+                        .register(viewSwitch, new MyOnLoadLayoutListener(getContext(), getOnLoadSwitchClick()));
+            }
         } else {
             isRecycle = true;
         }
-        return view;
+        return rootView;
     }
 
 
@@ -146,7 +151,7 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
      */
     @Override
     public View getSwitchRoot() {
-        return view.findViewById(R.id.switchRoot);
+        return rootView.findViewById(R.id.switchRoot);
     }
 
     /**

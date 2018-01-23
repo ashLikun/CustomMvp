@@ -24,9 +24,9 @@ public abstract class DataBindingFragment<DB extends ViewDataBinding> extends Ba
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         if (dataBind == null) {
-            dataBind = DataBindingUtil.bind(view);
+            dataBind = DataBindingUtil.bind(rootView);
         }
-        return view;
+        return rootView;
     }
 
     public DB getDataBind() {
