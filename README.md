@@ -33,10 +33,6 @@ dependencies {
     implementation 'com.github.ashLikun:CommonUtils:1.3.7'
     //标题栏
     implementation 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
-    //封装的RecycleView
-    implementation 'com.github.ashLikun:XRecycleView:1.1.5'
-    //公共的适配器
-    implementation 'com.github.ashLikun.CommonAdapter:databindadapter:1.1.9'
     //习惯的对话框
     implementation 'com.github.ashLikun:CustomDialog:1.1.3'
     //布局切换神器
