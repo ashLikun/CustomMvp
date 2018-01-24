@@ -10,7 +10,7 @@ import com.ashlikun.utils.other.LogUtils;
  * <p>
  * 功能介绍：
  */
-public class MainPresenter extends BasePresenter<IMainView> {
+public class MainFragmentPresenter extends BasePresenter<IMainView> {
     @Override
     public void onCreate() {
         super.onCreate();

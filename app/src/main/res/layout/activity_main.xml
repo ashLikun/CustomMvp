@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data></data>
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context="com.ashlikun.core.simple.MainActivity">
 
         <TextView
@@ -15,6 +17,11 @@
             android:lineSpacingExtra="20dp"
             android:text="1111111111\n2222222222\n3333333333\n444444444444"
             android:textColor="#ffffff" />
+
+        <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
 
     </LinearLayout>
 </layout>

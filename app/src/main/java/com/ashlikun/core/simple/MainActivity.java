@@ -29,6 +29,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter, ActivityMainBin
     @Override
     public void initView() {
         Log.e("MainActivity", "initView");
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment, new MainFragment()).commit();
     }
 
     @Override

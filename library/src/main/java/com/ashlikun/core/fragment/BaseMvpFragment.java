@@ -31,7 +31,9 @@ public abstract class BaseMvpFragment<P extends BasePresenter, DB extends ViewDa
             if (this instanceof BaseView) {
                 if (presenter != null) {
                     presenter.onAttachView((BaseView) this);
-                    presenter.onCreate(savedInstanceState);
+                    if (savedInstanceState != null) {
+                        presenter.onCreateTosavedState(savedInstanceState);
+                    }
                 }
             } else {
                 new Exception("BaseMvpFragment 必须实现 BaseView");
@@ -42,46 +44,8 @@ public abstract class BaseMvpFragment<P extends BasePresenter, DB extends ViewDa
     @Override
     protected void baseInitView() {
         presenter = initPresenter();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        presenter.onStart();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        presenter.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        presenter.onPause();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        presenter.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        if (presenter != null) {
-            presenter.onDestroy();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void onLowMemory() {
-        if (presenter != null) {
-            presenter.onDestroy();
-        }
-        super.onLowMemory();
+        getLifecycle().addObserver(presenter);
+        presenter.lifecycle = getLifecycle();
     }
 
     @Override

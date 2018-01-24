@@ -37,7 +37,7 @@ dependencies {
     implementation rootProject.ext.v7AppCompat
 
     compileOnly 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
-    compileOnly 'com.github.ashLikun:CommonUtils:1.3.4'
+    compileOnly 'com.github.ashLikun:CommonUtils:1.3.7'
     compileOnly 'com.github.ashLikun:CustomDialog:1.1.3'
     compileOnly 'com.github.ashLikun:LoadSwitch:1.0.6'
     compileOnly 'com.github.ashLikun:OkHttpUtils:1.4.4'

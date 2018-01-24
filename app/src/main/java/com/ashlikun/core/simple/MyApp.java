@@ -2,6 +2,8 @@ package com.ashlikun.core.simple;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.ashlikun.utils.Utils;
+
 /**
  * 作者　　: 李坤
  * 创建时间: 2018/1/22　13:52
@@ -11,4 +13,10 @@ import android.support.multidex.MultiDexApplication;
  */
 
 public class MyApp extends MultiDexApplication {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Utils.setDebug(true);
+        Utils.init(this);
+    }
 }

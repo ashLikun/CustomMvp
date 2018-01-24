@@ -1,9 +1,13 @@
 package com.ashlikun.core;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.os.Bundle;
 
 import com.ashlikun.core.iview.BaseView;
 import com.ashlikun.okhttputils.http.ExecuteCall;
+import com.ashlikun.utils.other.LogUtils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,8 +19,9 @@ import java.util.Set;
  * <p>
  * 功能介绍：
  */
-public abstract class BasePresenter<T extends BaseView> {
+public abstract class BasePresenter<T extends BaseView> implements LifecycleObserver {
     public T mvpView;
+    public Lifecycle lifecycle;
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:13
@@ -41,8 +46,9 @@ public abstract class BasePresenter<T extends BaseView> {
      * <p>
      * 方法功能：当P创建的时候
      */
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    public void onCreate() {
 
-    public void onCreate(Bundle savedInstanceState) {
     }
 
 
@@ -60,22 +66,29 @@ public abstract class BasePresenter<T extends BaseView> {
         this.mHttpCalls.add(s);
     }
 
-
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onResume() {
     }
 
-
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onPause() {
     }
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     public void onStop() {
     }
 
     //保存状态，
     public void onSaveInstanceState(Bundle outState) {
+
+    }
+
+    //恢复状态，在onCreate之前
+    public void onCreateTosavedState(Bundle savedInstanceState) {
 
     }
 
@@ -85,7 +98,9 @@ public abstract class BasePresenter<T extends BaseView> {
      * <p>
      * 方法功能：销毁
      */
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
+        LogUtils.e("onDestroy");
         cancelAllHttp();
         mvpView = null;
     }

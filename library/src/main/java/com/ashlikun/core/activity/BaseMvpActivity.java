@@ -33,7 +33,9 @@ public abstract class BaseMvpActivity<P extends BasePresenter, VDB extends ViewD
         if (this instanceof BaseView) {
             if (presenter != null) {
                 presenter.onAttachView((BaseView) this);
-                presenter.onCreate(savedInstanceState);
+                if (savedInstanceState != null) {
+                    presenter.onCreateTosavedState(savedInstanceState);
+                }
             }
         } else {
             throw new RuntimeException(this.getClass().getSimpleName() + " 必须实现 BaseView");
@@ -46,7 +48,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter, VDB extends ViewD
         if (this instanceof BaseView) {
             if (presenter != null) {
                 presenter.onAttachView((BaseView) this);
-                presenter.onCreate(null);
+                presenter.onCreate();
             }
         } else {
             new RuntimeException(this.getClass().getSimpleName() + " 必须实现 BaseView");
@@ -58,54 +60,10 @@ public abstract class BaseMvpActivity<P extends BasePresenter, VDB extends ViewD
     protected void baseInitView() {
         super.baseInitView();
         presenter = initPresenter();
+        getLifecycle().addObserver(presenter);
+        presenter.lifecycle = getLifecycle();
     }
 
-    @Override
-    protected void onStart() {
-        presenter.onStart();
-        super.onStart();
-
-    }
-
-    @Override
-    protected void onResume() {
-        presenter.onResume();
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        presenter.onPause();
-        super.onPause();
-    }
-
-    @Override
-    protected void onStop() {
-        presenter.onStop();
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (presenter != null) {
-            presenter.onDestroy();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
-
-    @Override
-    public void onLowMemory() {
-        if (presenter != null) {
-            presenter.onDestroy();
-        }
-        super.onLowMemory();
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
