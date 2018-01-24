@@ -33,9 +33,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter, VDB extends ViewD
         if (this instanceof BaseView) {
             if (presenter != null) {
                 presenter.onAttachView((BaseView) this);
-                if (savedInstanceState != null) {
-                    presenter.onCreateTosavedState(savedInstanceState);
-                }
+                presenter.onCreate(savedInstanceState);
             }
         } else {
             throw new RuntimeException(this.getClass().getSimpleName() + " 必须实现 BaseView");
@@ -48,7 +46,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter, VDB extends ViewD
         if (this instanceof BaseView) {
             if (presenter != null) {
                 presenter.onAttachView((BaseView) this);
-                presenter.onCreate();
+                presenter.onCreate(null);
             }
         } else {
             new RuntimeException(this.getClass().getSimpleName() + " 必须实现 BaseView");

@@ -46,8 +46,7 @@ public abstract class BasePresenter<T extends BaseView> implements LifecycleObse
      * <p>
      * 方法功能：当P创建的时候
      */
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    public void onCreate() {
+    public void onCreate(Bundle savedInstanceState) {
 
     }
 
@@ -87,10 +86,6 @@ public abstract class BasePresenter<T extends BaseView> implements LifecycleObse
 
     }
 
-    //恢复状态，在onCreate之前
-    public void onCreateTosavedState(Bundle savedInstanceState) {
-
-    }
 
     /**
      * 作者　　: 李坤

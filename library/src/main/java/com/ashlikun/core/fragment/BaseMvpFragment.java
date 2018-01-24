@@ -31,9 +31,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter, DB extends ViewDa
             if (this instanceof BaseView) {
                 if (presenter != null) {
                     presenter.onAttachView((BaseView) this);
-                    if (savedInstanceState != null) {
-                        presenter.onCreateTosavedState(savedInstanceState);
-                    }
+                    presenter.onCreate(savedInstanceState);
                 }
             } else {
                 new Exception("BaseMvpFragment 必须实现 BaseView");

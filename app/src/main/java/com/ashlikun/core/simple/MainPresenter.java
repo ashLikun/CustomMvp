@@ -1,5 +1,7 @@
 package com.ashlikun.core.simple;
 
+import android.os.Bundle;
+
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.utils.other.LogUtils;
 
@@ -11,9 +13,10 @@ import com.ashlikun.utils.other.LogUtils;
  * 功能介绍：
  */
 public class MainPresenter extends BasePresenter<IMainView> {
+
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         LogUtils.e("onCreate");
     }
 
