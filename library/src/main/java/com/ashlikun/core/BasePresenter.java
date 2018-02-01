@@ -9,9 +9,6 @@ import com.ashlikun.core.iview.BaseView;
 import com.ashlikun.okhttputils.http.ExecuteCall;
 import com.ashlikun.utils.other.LogUtils;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * 作者　　: 李坤
  * 创建时间: 16:21 Administrator
@@ -22,12 +19,7 @@ import java.util.Set;
 public abstract class BasePresenter<T extends BaseView> implements LifecycleObserver {
     public T mvpView;
     public Lifecycle lifecycle;
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:13
-     * 方法功能：http请求执行后的集合   方便销毁
-     */
-    private Set<ExecuteCall> mHttpCalls;
+
 
     /**
      * 作者　　: 李坤
@@ -50,20 +42,6 @@ public abstract class BasePresenter<T extends BaseView> implements LifecycleObse
 
     }
 
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2017/5/27 10:40
-     * <p>
-     * 方法功能：每调用一个请求添加
-     */
-
-    public void addHttpCall(ExecuteCall s) {
-        if (this.mHttpCalls == null) {
-            this.mHttpCalls = new HashSet<>();
-        }
-        this.mHttpCalls.add(s);
-    }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     public void onStart() {
@@ -101,16 +79,19 @@ public abstract class BasePresenter<T extends BaseView> implements LifecycleObse
     }
 
     /**
+     * 作者　　: 李坤
+     * 创建时间: 2017/5/27 10:40
+     * <p>
+     * 方法功能：每调用一个请求添加
+     */
+    public void addHttpCall(ExecuteCall s) {
+        HttpCacheExecuteCall.getInstance().register(this, s);
+    }
+
+    /**
      * 销毁网络访问
      */
-    private void cancelAllHttp() {
-        if (mHttpCalls != null) {
-            for (ExecuteCall call : mHttpCalls) {
-                if (!call.isCompleted() && !call.isCanceled()) {
-                    call.cancel();
-                }
-            }
-            mHttpCalls.clear();
-        }
+    public void cancelAllHttp() {
+        HttpCacheExecuteCall.getInstance().cancelAllToKey(this);
     }
 }
