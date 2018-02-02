@@ -81,12 +81,14 @@ public class HttpCacheExecuteCall {
      */
     public void cancelAllToKey(Object key) {
         List<ExecuteCall> list = get(key);
-        for (ExecuteCall call : list) {
-            if (!call.isCompleted() && !call.isCanceled()) {
-                call.cancel();
+        if (list != null) {
+            for (ExecuteCall call : list) {
+                if (!call.isCompleted() && !call.isCanceled()) {
+                    call.cancel();
+                }
             }
+            unregister(key);
         }
-        unregister(key);
     }
 
     public List<ExecuteCall> get(Object key) {
