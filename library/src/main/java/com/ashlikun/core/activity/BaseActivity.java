@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.HttpCacheExecuteCall;
 import com.ashlikun.core.R;
 import com.ashlikun.core.iview.IActivityAndFragment;
@@ -54,10 +55,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        parseIntent(getIntent());
         setActivityContentView(getLayoutId());
         setStatueBar();
         baseInitView();
-        parseIntent(getIntent());
         initView();
         initData();
     }
@@ -152,7 +153,9 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
      * <p>
      * 方法功能：解析意图
      */
-    public abstract void parseIntent(Intent intent);
+    public void parseIntent(Intent intent) {
+        ARouter.getInstance().inject(this);
+    }
 
 
     /**

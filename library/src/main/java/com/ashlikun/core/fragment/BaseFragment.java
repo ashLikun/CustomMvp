@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.HttpCacheExecuteCall;
 import com.ashlikun.core.R;
 import com.ashlikun.core.activity.BaseActivity;
@@ -77,6 +78,7 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activity = (BaseActivity) getActivity();
+        ARouter.getInstance().inject(this);
     }
 
     @Nullable

@@ -15,10 +15,6 @@ import android.support.annotation.LayoutRes;
 public abstract class DataBindingActivity<VDB extends ViewDataBinding> extends BaseActivity {
     protected VDB dataBind;
 
-    @Override
-    protected void baseInitView() {
-        super.baseInitView();
-    }
 
     public VDB getDataBind() {
         return dataBind;
