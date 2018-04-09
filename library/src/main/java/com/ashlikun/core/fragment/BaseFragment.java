@@ -108,6 +108,17 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
             baseInitView();
             initView();
         }
+        initData();
+    }
+
+    /**
+     * 作者　　: 李坤
+     * 创建时间: 2017/9/11 0011 20:23
+     * <p>
+     * 方法功能：初始化数据
+     */
+    protected void initData() {
+
     }
 
     protected abstract void baseInitView();
