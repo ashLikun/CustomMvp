@@ -2,6 +2,7 @@ package com.ashlikun.core.simple;
 
 import android.support.multidex.MultiDexApplication;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.utils.Utils;
 
 /**
@@ -18,5 +19,6 @@ public class MyApp extends MultiDexApplication {
         super.onCreate();
         Utils.setDebug(true);
         Utils.init(this);
+        ARouter.init(this);
     }
 }
