@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.ashlikun.core.HttpCacheExecuteCall;
 import com.ashlikun.core.R;
 import com.ashlikun.core.activity.BaseActivity;
 import com.ashlikun.core.iview.IActivityAndFragment;
@@ -16,7 +15,7 @@ import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.MyOnLoadLayoutListener;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
-import com.ashlikun.okhttputils.http.ExecuteCall;
+import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.supertoobar.SupperToolBar;
 import com.ashlikun.utils.ui.UiUtils;
 
@@ -275,19 +274,9 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
     }
 
     /**
-     * 作者　　: 李坤
-     * 创建时间: 2017/5/27 10:40
-     * <p>
-     * 方法功能：每调用一个请求添加
-     */
-    public void addHttpCall(ExecuteCall s) {
-        HttpCacheExecuteCall.getInstance().register(this, s);
-    }
-
-    /**
      * 销毁网络访问
      */
     public void cancelAllHttp() {
-        HttpCacheExecuteCall.getInstance().cancelAllToKey(this);
+        OkHttpUtils.getInstance().cancelTag(this);
     }
 }

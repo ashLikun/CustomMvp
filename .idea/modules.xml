@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://F:\likun\github\CustonMvp\CustomMvp.iml" filepath="F:\likun\github\CustonMvp\CustomMvp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/CustonMvp.iml" filepath="$PROJECT_DIR$/CustonMvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CustomMvp.iml" filepath="$PROJECT_DIR$/CustomMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://F:\likun\github\CustonMvp\app\app.iml" filepath="F:\likun\github\CustonMvp\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
-      <module fileurl="file://F:\likun\github\CustonMvp\library\library.iml" filepath="F:\likun\github\CustonMvp\library\library.iml" />
     </modules>
   </component>
 </project>

@@ -6,7 +6,7 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.os.Bundle;
 
 import com.ashlikun.core.iview.BaseView;
-import com.ashlikun.okhttputils.http.ExecuteCall;
+import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.utils.other.LogUtils;
 
 /**
@@ -78,20 +78,11 @@ public abstract class BasePresenter<T extends BaseView> implements LifecycleObse
         mvpView = null;
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2017/5/27 10:40
-     * <p>
-     * 方法功能：每调用一个请求添加
-     */
-    public void addHttpCall(ExecuteCall s) {
-        HttpCacheExecuteCall.getInstance().register(this, s);
-    }
 
     /**
      * 销毁网络访问
      */
     public void cancelAllHttp() {
-        HttpCacheExecuteCall.getInstance().cancelAllToKey(this);
+        OkHttpUtils.getInstance().cancelTag(this);
     }
 }
