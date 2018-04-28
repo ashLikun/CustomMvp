@@ -11,9 +11,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
 import com.ashlikun.core.activity.BaseActivity;
 import com.ashlikun.core.iview.IActivityAndFragment;
+import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
-import com.ashlikun.loadswitch.MyOnLoadLayoutListener;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.supertoobar.SupperToolBar;
@@ -90,8 +90,8 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
             toolbar = (SupperToolBar) rootView.findViewById(R.id.toolbar);
             View viewSwitch = getSwitchRoot();
             if (viewSwitch != null) {
-                loadSwitchService = LoadSwitch.getDefault()
-                        .register(viewSwitch, new MyOnLoadLayoutListener(getContext(), getOnLoadSwitchClick()));
+                loadSwitchService = LoadSwitch.get()
+                        .register(viewSwitch, new DefaultOnLoadLayoutListener(getContext(), getOnLoadSwitchClick()));
             }
         } else {
             isRecycle = true;

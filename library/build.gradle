@@ -37,11 +37,11 @@ dependencies {
     implementation rootProject.ext.v7AppCompat
 
     compileOnly 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
-    compileOnly 'com.github.ashLikun:CommonUtils:1.4.0'
-    compileOnly 'com.github.ashLikun:CustomDialog:1.1.3'
-    compileOnly 'com.github.ashLikun:LoadSwitch:1.0.6'
-    compileOnly 'com.github.ashLikun:OkHttpUtils:1.4.9'
-    compileOnly 'com.alibaba:arouter-api:1.3.1'
+    compileOnly 'com.github.ashLikun:CommonUtils:+'
+    compileOnly 'com.github.ashLikun:CustomDialog:+'
+    compileOnly 'com.github.ashLikun:LoadSwitch:+'
+    compileOnly 'com.github.ashLikun:OkHttpUtils:+'
+    compileOnly 'com.alibaba:arouter-api:+'
 }
 
 apply from: '../maven.gradle'

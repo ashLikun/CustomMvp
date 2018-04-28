@@ -11,9 +11,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
 import com.ashlikun.core.iview.IActivityAndFragment;
 import com.ashlikun.customdialog.LoadDialog;
+import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
-import com.ashlikun.loadswitch.MyOnLoadLayoutListener;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.supertoobar.SupperToolBar;
@@ -113,8 +113,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
         UiUtils.applyFont(UiUtils.getRootView(this));
         View view = getSwitchRoot();
         if (view != null) {
-            loadSwitchService = LoadSwitch.getDefault()
-                    .register(view, new MyOnLoadLayoutListener(this, getOnLoadSwitchClick()));
+            loadSwitchService = LoadSwitch.get()
+                    .register(view, new DefaultOnLoadLayoutListener(this, getOnLoadSwitchClick()));
         }
     }
 
