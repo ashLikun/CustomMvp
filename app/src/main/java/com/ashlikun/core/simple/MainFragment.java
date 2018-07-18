@@ -3,9 +3,8 @@ package com.ashlikun.core.simple;
 import android.util.Log;
 
 import com.ashlikun.core.fragment.BaseMvpFragment;
-import com.ashlikun.core.simple.databinding.ActivityMainBinding;
 
-public class MainFragment extends BaseMvpFragment<MainFragmentPresenter, ActivityMainBinding>
+public class MainFragment extends BaseMvpFragment<MainFragmentPresenter>
         implements IMainView {
 
 

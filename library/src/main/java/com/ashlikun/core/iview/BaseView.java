@@ -2,6 +2,7 @@ package com.ashlikun.core.iview;
 
 import android.content.Context;
 
+import com.ashlikun.loadswitch.ContextData;
 import com.ashlikun.loadswitch.LoadSwitchService;
 
 /**
@@ -17,22 +18,22 @@ public interface BaseView {
     /**
      * 显示对话框，用于网络请求
      */
-    void showDialog(String msg, boolean isCancelable);
+    void showProgress(String msg, boolean isCancelable);
 
     /**
      * 显示对话框
      */
-    void showDialog(String msg);
+    void showProgress(String msg);
 
     /**
      * 显示对话框
      */
-    void showDialog();
+    void showProgress();
 
     /**
      * 关闭加载中对话框
      */
-    void dismissDialog();
+    void hintProgress();
 
 
     /**
@@ -44,20 +45,33 @@ public interface BaseView {
      * 获取自动切换加载中布局的管理器
      */
 
-    LoadSwitchService getLoadSwitchService();
-
+    LoadSwitchService getSwitchService();
 
     /**
-     * 显示错误信息
+     * 显示加载中布局
+     *
+     * @param data
      */
-    void showErrorMessage(String result);
+    public void showLoading(ContextData data);
 
-    void showWarningMessage(String result);
+    /**
+     * 显示重新加载页面
+     *
+     * @param data
+     */
+    public void showRetry(ContextData data);
 
-    void showInfoMessage(String result);
+    /**
+     * 显示内容页面
+     */
+    public void showContent();
 
-    void showInfoMessage(String result, boolean isFinish);
-
+    /**
+     * 显示空页面
+     *
+     * @param data
+     */
+    public void showEmpty(ContextData data);
 
     void finish();
 }

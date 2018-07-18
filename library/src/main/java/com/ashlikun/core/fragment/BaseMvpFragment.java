@@ -1,6 +1,5 @@
 package com.ashlikun.core.fragment;
 
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -19,8 +18,8 @@ import java.lang.reflect.ParameterizedType;
  */
 
 
-public abstract class BaseMvpFragment<P extends BasePresenter, DB extends ViewDataBinding> extends
-        DataBindingFragment<DB> {
+public abstract class BaseMvpFragment<P extends BasePresenter> extends
+        BaseFragment {
 
     public P presenter;
 

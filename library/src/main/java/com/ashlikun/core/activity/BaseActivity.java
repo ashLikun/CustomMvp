@@ -9,8 +9,9 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
-import com.ashlikun.core.iview.IActivityAndFragment;
+import com.ashlikun.core.iview.IBaseWindow;
 import com.ashlikun.customdialog.LoadDialog;
+import com.ashlikun.loadswitch.ContextData;
 import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
@@ -19,10 +20,9 @@ import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.supertoobar.SupperToolBar;
 import com.ashlikun.utils.other.StringUtils;
 import com.ashlikun.utils.ui.StatusBarCompat;
-import com.ashlikun.utils.ui.SuperToast;
 import com.ashlikun.utils.ui.UiUtils;
 
-public abstract class BaseActivity extends AppCompatActivity implements IActivityAndFragment {
+public abstract class BaseActivity extends AppCompatActivity implements IBaseWindow {
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:14
@@ -37,7 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
      * <p>
      * 方法功能：布局切换
      */
-    protected LoadSwitchService loadSwitchService = null;
+    public LoadSwitchService switchService = null;
 
     /**
      * 作者　　: 李坤
@@ -111,9 +111,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
     protected void baseInitView() {
         toolbar = (SupperToolBar) findViewById(R.id.toolbar);
         UiUtils.applyFont(UiUtils.getRootView(this));
+        initLoadSwitch();
+    }
+
+    /**
+     * 初始化布局切换的管理器
+     */
+    @Override
+    public void initLoadSwitch() {
         View view = getSwitchRoot();
         if (view != null) {
-            loadSwitchService = LoadSwitch.get()
+            switchService = LoadSwitch.get()
                     .register(view, new DefaultOnLoadLayoutListener(this, getOnLoadSwitchClick()));
         }
     }
@@ -227,17 +235,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
         return findViewById(R.id.switchRoot);
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:07
-     * <p>
-     * 方法功能：获取页面切换的布局管理器
-     */
-    @Override
-    public LoadSwitchService getLoadSwitchService() {
-        return loadSwitchService;
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -273,7 +270,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
      * 方法功能：显示对话框，用于网络请求
      */
 
-    public void showDialog(String msg, boolean isCancelable) {
+    public void showProgress(String msg, boolean isCancelable) {
         // 判断是否加载对话框
         if (!isFinishing()) {
             if (loadDialog == null) {
@@ -296,8 +293,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
      * <p>
      * 方法功能：显示对话框，用于网络请求
      */
-    public void showDialog(String msg) {
-        showDialog(msg, false);
+    public void showProgress(String msg) {
+        showProgress(msg, false);
     }
 
     /**
@@ -306,8 +303,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
      * <p>
      * 方法功能：显示对话框，用于网络请求
      */
-    public void showDialog() {
-        showDialog(null);
+    public void showProgress() {
+        showProgress(null);
     }
 
     /**
@@ -316,59 +313,43 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
      * <p>
      * 方法功能：销毁对话框
      */
-    public void dismissDialog() {
+    public void hintProgress() {
         if (loadDialog != null) {
             loadDialog.dismiss();
             loadDialog = null;
         }
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:11
-     * <p>
-     * 方法功能：显示错误信息
-     */
-    public void showErrorMessage(String result) {
-        if (result != null) {
-            SuperToast.get(result).error();
+    @Override
+    public LoadSwitchService getSwitchService() {
+        return switchService;
+    }
+
+    @Override
+    public void showLoading(ContextData data) {
+        if (switchService != null) {
+            switchService.showLoading(data);
         }
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:11
-     * <p>
-     * 方法功能：显示警告信息
-     */
-    public void showWarningMessage(String result) {
-        if (result != null) {
-            SuperToast.get(result).warn();
+    @Override
+    public void showContent() {
+        if (switchService != null) {
+            switchService.showContent();
         }
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:11
-     * <p>
-     * 方法功能：显示提示信息
-     */
-    public void showInfoMessage(String result) {
-        if (result != null) {
-            SuperToast.get(result).info();
+    @Override
+    public void showEmpty(ContextData data) {
+        if (switchService != null) {
+            switchService.showEmpty(data);
         }
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:11
-     * <p>
-     * 方法功能：显示提示信息
-     */
-    public void showInfoMessage(String result, boolean isFinish) {
-        if (result != null) {
-
-            SuperToast.get(result).setFinish(isFinish ? this : null).info();
+    @Override
+    public void showRetry(ContextData data) {
+        if (switchService != null) {
+            switchService.showRetry(data);
         }
     }
 
@@ -380,6 +361,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IActivit
     /**
      * 销毁网络访问
      */
+    @Override
     public void cancelAllHttp() {
         OkHttpUtils.getInstance().cancelTag(this);
     }

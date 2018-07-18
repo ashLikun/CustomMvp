@@ -18,8 +18,8 @@ import java.lang.reflect.ParameterizedType;
  * <p>
  * 功能介绍：
  */
-public abstract class BaseMvpActivity<P extends BasePresenter, VDB extends ViewDataBinding>
-        extends DataBindingActivity<VDB> {
+public abstract class BaseMvpActivity<P extends BasePresenter>
+        extends BaseActivity {
 
     public P presenter;
 

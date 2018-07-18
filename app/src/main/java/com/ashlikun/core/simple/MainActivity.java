@@ -9,7 +9,7 @@ import android.util.Log;
 import com.ashlikun.core.activity.BaseMvpActivity;
 import com.ashlikun.core.simple.databinding.ActivityMainBinding;
 
-public class MainActivity extends BaseMvpActivity<MainPresenter, ActivityMainBinding>
+public class MainActivity extends BaseMvpActivity<MainPresenter>
         implements IMainView {
 
 

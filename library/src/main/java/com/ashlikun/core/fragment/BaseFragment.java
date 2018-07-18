@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
 import com.ashlikun.core.activity.BaseActivity;
-import com.ashlikun.core.iview.IActivityAndFragment;
+import com.ashlikun.core.iview.IBaseWindow;
+import com.ashlikun.loadswitch.ContextData;
 import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
@@ -27,7 +28,7 @@ import com.ashlikun.utils.ui.UiUtils;
  * 功能介绍：基类fragment
  */
 
-public abstract class BaseFragment extends Fragment implements IActivityAndFragment {
+public abstract class BaseFragment extends Fragment implements IBaseWindow {
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:14
@@ -61,7 +62,7 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
      * <p>
      * 方法功能：布局切换
      */
-    protected LoadSwitchService loadSwitchService = null;
+    public LoadSwitchService switchService = null;
 
     /**
      * 作者　　: 李坤
@@ -88,17 +89,21 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
             rootView = UiUtils.getInflaterView(activity, getLayoutId());
             UiUtils.applyFont(rootView);
             toolbar = (SupperToolBar) rootView.findViewById(R.id.toolbar);
-            View viewSwitch = getSwitchRoot();
-            if (viewSwitch != null) {
-                loadSwitchService = LoadSwitch.get()
-                        .register(viewSwitch, new DefaultOnLoadLayoutListener(getContext(), getOnLoadSwitchClick()));
-            }
+            initLoadSwitch();
         } else {
             isRecycle = true;
         }
         return rootView;
     }
 
+    @Override
+    public void initLoadSwitch() {
+        View viewSwitch = getSwitchRoot();
+        if (viewSwitch != null) {
+            switchService = LoadSwitch.get()
+                    .register(viewSwitch, new DefaultOnLoadLayoutListener(getContext(), getOnLoadSwitchClick()));
+        }
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -168,18 +173,6 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
         return rootView.findViewById(R.id.switchRoot);
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:07
-     * <p>
-     * 方法功能：获取页面切换的布局管理器
-     */
-    @Override
-    public LoadSwitchService getLoadSwitchService() {
-        return loadSwitchService;
-    }
-
-
     @Override
     public void onDetach() {
         super.onDetach();
@@ -217,65 +210,66 @@ public abstract class BaseFragment extends Fragment implements IActivityAndFragm
      * @param msg
      * @param isCancelable
      */
-    public void showDialog(String msg, boolean isCancelable) {
-        activity.showDialog(msg, isCancelable);
+    public void showProgress(String msg, boolean isCancelable) {
+        activity.showProgress(msg, isCancelable);
     }
 
-    public void showDialog(String msg) {
-        showDialog(msg, false);
+    public void showProgress(String msg) {
+        showProgress(msg, false);
     }
 
-    public void showDialog() {
-        showDialog(null);
+    public void showProgress() {
+        showProgress(null);
     }
 
-    public void dismissDialog() {
-        activity.dismissDialog();
+    public void hintProgress() {
+        activity.hintProgress();
     }
 
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:11
-     * <p>
-     * 方法功能：显示错误信息
-     */
-    public void showErrorMessage(String result) {
-        activity.showErrorMessage(result);
+    @Override
+    public void showLoading(ContextData data) {
+        if (switchService != null) {
+            switchService.showLoading(data);
+        }
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:11
-     * <p>
-     * 方法功能：显示警告信息
-     */
-    public void showWarningMessage(String result) {
-        activity.showWarningMessage(result);
+    @Override
+    public LoadSwitchService getSwitchService() {
+        return switchService;
     }
 
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:11
-     * <p>
-     * 方法功能：显示警告信息
-     */
-    public void showInfoMessage(String result) {
-        activity.showInfoMessage(result);
+    @Override
+    public void showContent() {
+        if (switchService != null) {
+            switchService.showContent();
+        }
     }
 
-    public void showInfoMessage(String result, boolean isFinish) {
-        activity.showInfoMessage(result, isFinish);
+    @Override
+    public void showEmpty(ContextData data) {
+        if (switchService != null) {
+            switchService.showEmpty(data);
+        }
     }
 
+    @Override
+    public void showRetry(ContextData data) {
+        if (switchService != null) {
+            switchService.showRetry(data);
+        }
+    }
 
+    @Override
     public void finish() {
-        activity.finish();
+        if (activity != null && !activity.isFinishing()) {
+            activity.finish();
+        }
     }
 
     /**
      * 销毁网络访问
      */
+    @Override
     public void cancelAllHttp() {
         OkHttpUtils.getInstance().cancelTag(this);
     }
