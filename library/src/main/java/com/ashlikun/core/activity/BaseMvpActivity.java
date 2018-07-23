@@ -2,7 +2,6 @@ package com.ashlikun.core.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 
 import com.ashlikun.core.BasePresenter;
