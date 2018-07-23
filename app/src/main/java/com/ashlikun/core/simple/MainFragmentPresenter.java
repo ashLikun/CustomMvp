@@ -5,6 +5,8 @@ import android.os.Bundle;
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.utils.other.LogUtils;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 作者　　: 李坤
  * 创建时间: 2017/12/19　17:08
@@ -21,7 +23,7 @@ public class MainFragmentPresenter extends BasePresenter<IMainView> {
     }
 
     @Override
-    public void onAttachView(IMainView mvpView) {
+    public void onAttachView(@NotNull Void mvpView) {
         super.onAttachView(mvpView);
         LogUtils.e("onAttachView");
     }

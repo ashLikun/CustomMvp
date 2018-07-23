@@ -23,6 +23,5 @@ public class MainFragment extends BaseMvpFragment<MainFragmentPresenter>
 
     @Override
     public void clearData() {
-
     }
 }

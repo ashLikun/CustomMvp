@@ -1,10 +1,10 @@
-package com.ashlikun.core.iview;
+package com.ashlikun.core.iview
 
 /**
  * Created by yang on 2016/9/6.
  */
 
-public interface IProgressView {
+interface IProgressView {
     /**
      * 进度的回调
      *
@@ -12,8 +12,8 @@ public interface IProgressView {
      * @param done     完成
      * @param isUpdate 是否是上传
      */
-    void upLoading(int progress, boolean done, boolean isUpdate, boolean isCompress);
+    fun upLoading(progress: Int, done: Boolean, isUpdate: Boolean, isCompress: Boolean)
 
-    void dismissProgressDialog();
+    fun dismissProgressDialog()
 
 }

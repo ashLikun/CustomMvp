@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.ashlikun.core.activity.BaseMvpActivity;
-import com.ashlikun.core.simple.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseMvpActivity<MainPresenter>
         implements IMainView {
@@ -35,7 +34,7 @@ public class MainActivity extends BaseMvpActivity<MainPresenter>
 
     @Override
     public void parseIntent(Intent intent) {
-        Log.e("MainActivity", "parseIntent" + (presenter == null));
+        Log.e("MainActivity", "parseIntent");
     }
 
     @Override

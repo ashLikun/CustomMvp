@@ -1,10 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
-    dataBinding {
-        enabled true
-    }
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -42,6 +40,11 @@ dependencies {
     compileOnly 'com.github.ashLikun:LoadSwitch:+'
     compileOnly 'com.github.ashLikun:OkHttpUtils:+'
     compileOnly 'com.alibaba:arouter-api:+'
+    compileOnly 'com.github.ashLikun:CircleProgressView:+'
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply from: '../maven.gradle'
+repositories {
+    mavenCentral()
+}
