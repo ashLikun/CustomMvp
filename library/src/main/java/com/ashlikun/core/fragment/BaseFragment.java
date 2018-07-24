@@ -87,9 +87,6 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
         if (rootView == null) {
             isRecycle = false;
             rootView = UiUtils.getInflaterView(activity, getLayoutId());
-            UiUtils.applyFont(rootView);
-            toolbar = (SupperToolBar) rootView.findViewById(R.id.toolbar);
-            initLoadSwitch();
         } else {
             isRecycle = true;
         }
@@ -125,7 +122,10 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
 
     }
 
-    protected abstract void baseInitView();
+    protected void baseInitView() {
+        toolbar = (SupperToolBar) rootView.findViewById(R.id.toolbar);
+        initLoadSwitch();
+    }
 
     /**
      * 作者　　: 李坤

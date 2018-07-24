@@ -20,7 +20,6 @@ import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.supertoobar.SupperToolBar;
 import com.ashlikun.utils.other.StringUtils;
 import com.ashlikun.utils.ui.StatusBarCompat;
-import com.ashlikun.utils.ui.UiUtils;
 
 public abstract class BaseActivity extends AppCompatActivity implements IBaseWindow {
     /**
@@ -110,7 +109,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      */
     protected void baseInitView() {
         toolbar = (SupperToolBar) findViewById(R.id.toolbar);
-        UiUtils.applyFont(UiUtils.getRootView(this));
         initLoadSwitch();
     }
 
