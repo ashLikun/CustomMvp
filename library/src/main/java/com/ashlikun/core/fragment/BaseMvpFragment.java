@@ -1,5 +1,6 @@
 package com.ashlikun.core.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -30,6 +31,11 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
             if (this instanceof BaseView) {
                 if (presenter != null) {
                     presenter.onAttachView((BaseView) this);
+                    Intent intent = new Intent();
+                    if (getArguments() != null) {
+                        intent.putExtras(getArguments());
+                    }
+                    presenter.parseIntent(intent);
                     presenter.onCreate(savedInstanceState);
                 }
             } else {

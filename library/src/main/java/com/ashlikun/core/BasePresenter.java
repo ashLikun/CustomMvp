@@ -3,6 +3,7 @@ package com.ashlikun.core;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.OnLifecycleEvent;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.ashlikun.core.iview.BaseView;
@@ -30,6 +31,12 @@ public abstract class BasePresenter<T extends BaseView> implements LifecycleObse
 
     public void onAttachView(T mvpView) {
         this.mvpView = mvpView;
+    }
+
+    /**
+     * 解析意图数据
+     */
+    public void parseIntent(Intent intent) {
     }
 
     /**

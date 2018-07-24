@@ -32,6 +32,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
         if (this instanceof BaseView) {
             if (presenter != null) {
                 presenter.onAttachView((BaseView) this);
+                presenter.parseIntent(getIntent());
                 presenter.onCreate(savedInstanceState);
             }
         } else {
@@ -45,6 +46,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
         if (this instanceof BaseView) {
             if (presenter != null) {
                 presenter.onAttachView((BaseView) this);
+                presenter.parseIntent(getIntent());
                 presenter.onCreate(null);
             }
         } else {
