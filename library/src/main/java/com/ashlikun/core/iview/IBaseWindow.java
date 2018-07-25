@@ -1,5 +1,6 @@
 package com.ashlikun.core.iview;
 
+import android.support.annotation.IdRes;
 import android.view.View;
 
 import com.ashlikun.loadswitch.ContextData;
@@ -21,7 +22,7 @@ public interface IBaseWindow {
      * <p>
      * 方法功能：获取布局id
      */
-    public abstract int getLayoutId();
+    int getLayoutId();
 
     /**
      * 作者　　: 李坤
@@ -29,14 +30,14 @@ public interface IBaseWindow {
      * <p>
      * 方法功能：初始化view
      */
-    public abstract void initView();
+    void initView();
 
     /**
      * 获取需要转化为{@link LoadSwitchService}的控件
      *
      * @return
      */
-    public View getSwitchRoot();
+    View getSwitchRoot();
 
     /**
      * 作者　　: 李坤
@@ -57,39 +58,48 @@ public interface IBaseWindow {
      *
      * @param data
      */
-    public void showLoading(ContextData data);
+    void showLoading(ContextData data);
 
     /**
      * 初始化布局切换的管理器
      */
-    public void initLoadSwitch();
+    void initLoadSwitch();
 
     /**
      * 显示重新加载页面
      *
      * @param data
      */
-    public void showRetry(ContextData data);
+    void showRetry(ContextData data);
 
     /**
      * 显示内容页面
      */
-    public void showContent();
+    void showContent();
 
     /**
      * 显示空页面
      *
      * @param data
      */
-    public void showEmpty(ContextData data);
+    void showEmpty(ContextData data);
 
     /**
      * 销毁页面
      */
-    public void finish();
+    void finish();
 
     /**
      * 销毁网络访问
      */
-    public void cancelAllHttp();
+    void cancelAllHttp();
+
+    /**
+     * 自定义查找控件
+     *
+     * @param id
+     * @param <T>
+     * @return
+     */
+    <T extends View> T f(@IdRes int id);
 }

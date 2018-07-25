@@ -2,6 +2,7 @@ package com.ashlikun.core.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -44,7 +45,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      * <p>
      * 方法功能：用于显示提示
      */
-
     private LoadDialog loadDialog;
 
     @Nullable
@@ -108,8 +108,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      * 方法功能：基本的View初始化
      */
     protected void baseInitView() {
-        toolbar = (SupperToolBar) findViewById(R.id.toolbar);
+        toolbar = f(R.id.toolbar);
         initLoadSwitch();
+    }
+
+    @Override
+    public <T extends View> T f(@IdRes int id) {
+        return findViewById(id);
     }
 
     /**
@@ -230,7 +235,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      */
     @Override
     public View getSwitchRoot() {
-        return findViewById(R.id.switchRoot);
+        return f(R.id.switchRoot);
     }
 
     @Override

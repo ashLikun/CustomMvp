@@ -1,6 +1,7 @@
 package com.ashlikun.core.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -112,6 +113,11 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
         initData();
     }
 
+    @Override
+    public <T extends View> T f(@IdRes int id) {
+        return rootView.findViewById(id);
+    }
+
     /**
      * 作者　　: 李坤
      * 创建时间: 2017/9/11 0011 20:23
@@ -123,7 +129,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
     }
 
     protected void baseInitView() {
-        toolbar = (SupperToolBar) rootView.findViewById(R.id.toolbar);
+        toolbar = f(R.id.toolbar);
         initLoadSwitch();
     }
 
@@ -170,7 +176,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
      */
     @Override
     public View getSwitchRoot() {
-        return rootView.findViewById(R.id.switchRoot);
+        return f(R.id.switchRoot);
     }
 
     @Override
