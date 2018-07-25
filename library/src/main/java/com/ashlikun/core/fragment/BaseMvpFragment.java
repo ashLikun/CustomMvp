@@ -46,6 +46,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
 
     @Override
     protected void baseInitView() {
+        super.baseInitView();
         presenter = initPresenter();
         getLifecycle().addObserver(presenter);
         presenter.lifecycle = getLifecycle();
