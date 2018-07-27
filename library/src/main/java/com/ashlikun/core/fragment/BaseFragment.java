@@ -19,6 +19,7 @@ import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.supertoobar.SupperToolBar;
+import com.ashlikun.utils.ui.StatusBarCompat;
 import com.ashlikun.utils.ui.UiUtils;
 
 /**
@@ -113,10 +114,6 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
         initData();
     }
 
-    @Override
-    public <T extends View> T f(@IdRes int id) {
-        return rootView.findViewById(id);
-    }
 
     /**
      * 作者　　: 李坤
@@ -131,6 +128,15 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
     protected void baseInitView() {
         toolbar = f(R.id.toolbar);
         initLoadSwitch();
+    }
+
+    @Override
+    public <T extends View> T f(@IdRes int id) {
+        return rootView.findViewById(id);
+    }
+
+    public StatusBarCompat getActivityStatusBar() {
+        return activity.getStatusBar();
     }
 
     /**

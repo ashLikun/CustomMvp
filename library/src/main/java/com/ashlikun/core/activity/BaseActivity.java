@@ -49,6 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
 
     @Nullable
     protected SupperToolBar toolbar;
+    protected StatusBarCompat statusBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +80,12 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      */
     protected void setStatueBar() {
         if (isStatusBarEnable()) {
+            statusBar = new StatusBarCompat(this);
             //设置状态栏颜色兼容,默认只是颜色
             if (isStatusTranslucent()) {
-                new StatusBarCompat(this).setTransparentBar(getStatusBarColor());
+                statusBar.translucentStatusBar();
             } else {
-                new StatusBarCompat(this).setColorBar(getStatusBarColor());
+                statusBar.setStatusBarColor(getStatusBarColor());
             }
         }
     }
@@ -115,6 +117,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
     @Override
     public <T extends View> T f(@IdRes int id) {
         return findViewById(id);
+    }
+
+    public StatusBarCompat getStatusBar() {
+        return statusBar;
     }
 
     /**
