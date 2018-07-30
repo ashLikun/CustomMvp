@@ -181,18 +181,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      * 方法功能：获取状态栏颜色
      */
     public int getStatusBarColor() {
-        return R.color.colorPrimary;
-    }
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2017/8/4 0004 0:01
-     * <p>
-     * 方法功能：设置状态栏透明度 0-255
-     */
-
-    public int getStatusBarAlpha() {
-        return 255;
+        return getResources().getColor(R.color.colorPrimary);
     }
 
     /**
