@@ -1,4 +1,4 @@
-package com.ashlikun.core.iview;
+package com.ashlikun.core.listener;
 
 import android.support.annotation.IdRes;
 import android.view.View;

@@ -11,7 +11,8 @@ import android.view.ViewGroup;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
 import com.ashlikun.core.activity.BaseActivity;
-import com.ashlikun.core.iview.IBaseWindow;
+import com.ashlikun.core.listener.IBaseWindow;
+import com.ashlikun.core.listener.OnDispatcherMessage;
 import com.ashlikun.loadswitch.ContextData;
 import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
@@ -23,14 +24,16 @@ import com.ashlikun.utils.ui.StatusBarCompat;
 import com.ashlikun.utils.ui.UiUtils;
 
 /**
- * 作者　　: 李坤
- * 创建时间: 2017/12/19 15:31
+ * @author　　: 李坤
+ * 创建时间: 2018/8/8 15:56
  * 邮箱　　：496546144@qq.com
  * <p>
- * 功能介绍：基类fragment
+ * 功能介绍：自定义最顶层的Fragment
+ * @see IBaseWindow : 只要是窗口都会实现这个统一接口
+ * @see OnDispatcherMessage : Fragment处理其他(Activity)发送的事件
  */
 
-public abstract class BaseFragment extends Fragment implements IBaseWindow {
+public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDispatcherMessage {
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:14
@@ -285,4 +288,28 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow {
     public void cancelAllHttp() {
         OkHttpUtils.getInstance().cancelTag(this);
     }
+
+    /**
+     * 发送事件给activity
+     *
+     * @param what:事件类型
+     * @param bundle    事件传递的数据
+     */
+    public void sendMsgToActivity(int what, Bundle bundle) {
+        if (activity != null) {
+            activity.onDispatcherMessage(what, bundle);
+        }
+    }
+
+    /**
+     * 处理Activity发送过来的事件
+     *
+     * @param what:事件类型
+     * @param bundle    事件传递的数据
+     */
+    @Override
+    public void onDispatcherMessage(int what, Bundle bundle) {
+
+    }
+
 }

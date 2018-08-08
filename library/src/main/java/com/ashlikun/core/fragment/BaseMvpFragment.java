@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.core.factory.PresenterFactoryImp;
-import com.ashlikun.core.iview.BaseView;
+import com.ashlikun.core.iview.IBaseView;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -28,9 +28,9 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (!isRecycle) {
-            if (this instanceof BaseView) {
+            if (this instanceof IBaseView) {
                 if (presenter != null) {
-                    presenter.onAttachView((BaseView) this);
+                    presenter.onAttachView((IBaseView) this);
                     Intent intent = new Intent();
                     if (getArguments() != null) {
                         intent.putExtras(getArguments());
@@ -72,7 +72,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
             presenter = PresenterFactoryImp.<P>createFactory(getClass()).create();
         }
         if (presenter == null) {
-            if (this instanceof BaseView && this.getClass().getGenericSuperclass() instanceof ParameterizedType
+            if (this instanceof IBaseView && this.getClass().getGenericSuperclass() instanceof ParameterizedType
                     && ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments().length > 0) {
                 Class _c = (Class) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
                 try {
@@ -86,5 +86,19 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
             throw new RuntimeException("Presenter创建失败!检查是否声明了@Presenter(XXX.class)注解  或者 从写initPresenter方法 或者当前View的泛型没用Presenter");
         }
         return presenter;
+    }
+
+    /**
+     * 处理Activity发送过来的事件
+     *
+     * @param what:事件类型
+     * @param bundle    事件传递的数据
+     */
+    @Override
+    public void onDispatcherMessage(int what, Bundle bundle) {
+        super.onDispatcherMessage(what, bundle);
+        if (presenter != null) {
+            presenter.onDispatcherMessage(what, bundle);
+        }
     }
 }

@@ -10,7 +10,8 @@ import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
-import com.ashlikun.core.iview.IBaseWindow;
+import com.ashlikun.core.listener.IBaseWindow;
+import com.ashlikun.core.listener.OnDispatcherMessage;
 import com.ashlikun.customdialog.LoadDialog;
 import com.ashlikun.loadswitch.ContextData;
 import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
@@ -22,7 +23,17 @@ import com.ashlikun.supertoobar.SupperToolBar;
 import com.ashlikun.utils.other.StringUtils;
 import com.ashlikun.utils.ui.StatusBarCompat;
 
-public abstract class BaseActivity extends AppCompatActivity implements IBaseWindow {
+/**
+ * @author　　: 李坤
+ * 创建时间: 2018/8/8 15:56
+ * 邮箱　　：496546144@qq.com
+ * <p>
+ * 功能介绍：自定义最顶层的Activity
+ * @see IBaseWindow : 只要是窗口都会实现这个统一接口
+ * @see OnDispatcherMessage : Activity处理其他(Fragment)发送的事件
+ */
+
+public abstract class BaseActivity extends AppCompatActivity implements IBaseWindow, OnDispatcherMessage {
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:14
@@ -190,7 +201,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      * <p>
      * 方法功能：内容是不是放到状态栏里面
      */
-
     public boolean isStatusTranslucent() {
         return false;
     }
@@ -362,5 +372,16 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
     @Override
     public void cancelAllHttp() {
         OkHttpUtils.getInstance().cancelTag(this);
+    }
+
+    /**
+     * 处理fragment发送过来的事件
+     *
+     * @param what:事件类型
+     * @param bundle    事件传递的数据
+     */
+    @Override
+    public void onDispatcherMessage(int what, Bundle bundle) {
+
     }
 }

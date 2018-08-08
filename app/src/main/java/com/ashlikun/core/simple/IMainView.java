@@ -1,6 +1,6 @@
 package com.ashlikun.core.simple;
 
-import com.ashlikun.core.iview.BaseView;
+import com.ashlikun.core.iview.IBaseView;
 
 /**
  * 作者　　: 李坤
@@ -10,5 +10,5 @@ import com.ashlikun.core.iview.BaseView;
  * 功能介绍：
  */
 
-public interface IMainView extends BaseView{
+public interface IMainView extends IBaseView {
 }

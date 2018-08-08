@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.core.factory.PresenterFactoryImp;
-import com.ashlikun.core.iview.BaseView;
+import com.ashlikun.core.iview.IBaseView;
 
 import java.lang.reflect.ParameterizedType;
 
@@ -29,9 +29,9 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (this instanceof BaseView) {
+        if (this instanceof IBaseView) {
             if (presenter != null) {
-                presenter.onAttachView((BaseView) this);
+                presenter.onAttachView((IBaseView) this);
                 presenter.parseIntent(getIntent());
                 presenter.onCreate(savedInstanceState);
             }
@@ -43,9 +43,9 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (this instanceof BaseView) {
+        if (this instanceof IBaseView) {
             if (presenter != null) {
-                presenter.onAttachView((BaseView) this);
+                presenter.onAttachView((IBaseView) this);
                 presenter.parseIntent(getIntent());
                 presenter.onCreate(null);
             }
@@ -84,7 +84,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
             presenter = PresenterFactoryImp.<P>createFactory(getClass()).create();
         }
         if (presenter == null) {
-            if (this instanceof BaseView && this.getClass().getGenericSuperclass() instanceof ParameterizedType
+            if (this instanceof IBaseView && this.getClass().getGenericSuperclass() instanceof ParameterizedType
                     && ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments().length > 0) {
                 Class _c = (Class) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
                 try {
@@ -98,5 +98,19 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
             throw new RuntimeException("Presenter创建失败!检查是否声明了@Presenter(XXX.class)注解  或者 从写initPresenter方法 或者当前View的泛型没用Presenter");
         }
         return presenter;
+    }
+
+    /**
+     * 处理fragment发送过来的事件
+     *
+     * @param what:事件类型
+     * @param bundle    事件传递的数据
+     */
+    @Override
+    public void onDispatcherMessage(int what, Bundle bundle) {
+        super.onDispatcherMessage(what, bundle);
+        if (presenter != null) {
+            presenter.onDispatcherMessage(what, bundle);
+        }
     }
 }

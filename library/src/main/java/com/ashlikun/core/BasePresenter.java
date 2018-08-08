@@ -6,7 +6,8 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.ashlikun.core.iview.BaseView;
+import com.ashlikun.core.iview.IBaseView;
+import com.ashlikun.core.listener.OnDispatcherMessage;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.utils.other.LogUtils;
 
@@ -17,7 +18,7 @@ import com.ashlikun.utils.other.LogUtils;
  * <p>
  * 功能介绍：
  */
-public abstract class BasePresenter<T extends BaseView> implements LifecycleObserver {
+public abstract class BasePresenter<T extends IBaseView> implements LifecycleObserver, OnDispatcherMessage {
     public T mvpView;
     public Lifecycle lifecycle;
 
@@ -91,5 +92,16 @@ public abstract class BasePresenter<T extends BaseView> implements LifecycleObse
      */
     public void cancelAllHttp() {
         OkHttpUtils.getInstance().cancelTag(this);
+    }
+
+    /**
+     * UI发送过来的事件
+     *
+     * @param what:事件类型
+     * @param bundle    事件传递的数据
+     */
+    @Override
+    public void onDispatcherMessage(int what, Bundle bundle) {
+
     }
 }

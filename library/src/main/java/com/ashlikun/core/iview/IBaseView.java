@@ -12,7 +12,7 @@ import com.ashlikun.loadswitch.LoadSwitchService;
  * <p>
  * 方法功能：抽离Mvp的View
  */
-public interface BaseView {
+public interface IBaseView {
     Context getContext();
 
     /**
