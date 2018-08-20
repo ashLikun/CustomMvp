@@ -23,21 +23,23 @@ dependencies {
 }
 ```
 需要的其他依赖
- //数字进度条
+
+    //数字进度条
     implementation 'com.github.ashLikun.frame:numberprogressbar:' + rootProject.ext.frameVersion
     //按钮
     implementation 'com.github.ashLikun.frame:flatbutton:' + rootProject.ext.frameVersion
+    implementation 'com.github.ashLikun.CircleProgressView+'
     //MD风格的进度条
-    implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
+    implementation 'me.zhanghai.android.materialprogressbar:library:+'
     //公共工具
-    implementation 'com.github.ashLikun:CommonUtils:1.3.7'
+    implementation 'com.github.ashLikun:CommonUtils:+'
     //标题栏
     implementation 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
     //习惯的对话框
-    implementation 'com.github.ashLikun:CustomDialog:1.1.3'
+    implementation 'com.github.ashLikun:CustomDialog:+'
     //布局切换神器
-    implementation 'com.github.ashLikun:LoadSwitch:1.0.5'
+    implementation 'com.github.ashLikun:LoadSwitch:+'
     //Okhttp工具
-    implementation 'com.github.ashLikun:OkHttpUtils:1.4.4'
+    implementation 'com.github.ashLikun:OkHttpUtils:+'
 
 ## 详细介绍

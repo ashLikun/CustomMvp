@@ -55,6 +55,7 @@ dependencies {
     implementation rootProject.ext.v7AppCompat
     //数字进度条
     implementation 'com.github.ashLikun.frame:numberprogressbar:' + rootProject.ext.frameVersion
+    implementation 'com.github.ashLikun.CircleProgressView:+'
     //按钮
     implementation 'com.github.ashLikun.frame:flatbutton:' + rootProject.ext.frameVersion
     //MD风格的进度条
