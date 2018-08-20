@@ -35,7 +35,7 @@ dependencies {
 
     compileOnly 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
     compileOnly 'com.github.ashLikun:CommonUtils:1.4.8'
-    compileOnly 'com.github.ashLikun.CircleProgressView:+'
+    compileOnly 'com.github.ashLikun:CircleProgressView:+'
     compileOnly 'com.github.ashLikun:CustomDialog:+'
     compileOnly 'com.github.ashLikun:LoadSwitch:+'
     compileOnly 'com.github.ashLikun:OkHttpUtils:+'
