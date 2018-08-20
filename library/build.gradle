@@ -7,6 +7,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
+        multiDexEnabled = true
     }
     buildTypes {
         release {
@@ -29,9 +30,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation rootProject.ext.v4Version
-    implementation rootProject.ext.v7AppCompat
+    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly rootProject.ext.v4Version
+    compileOnly rootProject.ext.v7AppCompat
 
     compileOnly 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
     compileOnly 'com.github.ashLikun:CommonUtils:1.4.8'
