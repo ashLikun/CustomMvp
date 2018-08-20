@@ -3,7 +3,7 @@ package com.ashlikun.core.simple;
 import android.support.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.ashlikun.utils.Utils;
+import com.ashlikun.utils.AppUtils;
 
 /**
  * 作者　　: 李坤
@@ -17,8 +17,8 @@ public class MyApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Utils.setDebug(true);
-        Utils.init(this);
+        AppUtils.setDebug(true);
+        AppUtils.init(this);
         ARouter.init(this);
     }
 }
