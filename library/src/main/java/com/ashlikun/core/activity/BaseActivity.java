@@ -192,7 +192,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      * 方法功能：获取状态栏颜色
      */
     public int getStatusBarColor() {
-        return getResources().getColor(R.color.colorPrimary);
+        return getResources().getColor(R.color.status_color);
     }
 
     /**
