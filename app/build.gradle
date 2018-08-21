@@ -53,6 +53,7 @@ dependencies {
     implementation rootProject.ext.v4Version
     implementation rootProject.ext.designVersion
     implementation rootProject.ext.v7AppCompat
+    implementation rootProject.ext.v13Version
     //数字进度条
     implementation 'com.github.ashLikun.frame:numberprogressbar:' + rootProject.ext.frameVersion
     implementation 'com.github.ashLikun:CircleProgressView:+'
