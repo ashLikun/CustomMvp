@@ -9,7 +9,9 @@ import android.os.Bundle;
 import com.ashlikun.core.iview.IBaseView;
 import com.ashlikun.core.listener.OnDispatcherMessage;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
-import com.ashlikun.utils.other.LogUtils;
+
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Proxy;
 
 /**
  * 作者　　: 李坤
@@ -19,9 +21,19 @@ import com.ashlikun.utils.other.LogUtils;
  * 功能介绍：
  */
 public abstract class BasePresenter<T extends IBaseView> implements LifecycleObserver, OnDispatcherMessage {
-    public T mvpView;
+    /**
+     * 软引用view
+     */
+    WeakReference<T> mvpView;
+    /**
+     * 利用动态代理实现以防null
+     */
+    private T mProxyView;
     public Lifecycle lifecycle;
 
+    public T getView() {
+        return mProxyView;
+    }
 
     /**
      * 作者　　: 李坤
@@ -31,7 +43,9 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
      */
 
     public void onAttachView(T mvpView) {
-        this.mvpView = mvpView;
+        this.mvpView = new WeakReference<>(mvpView);
+        mProxyView = (T) Proxy.newProxyInstance(mvpView.getClass().getClassLoader(),
+                mvpView.getClass().getInterfaces(), new MvpViewHandler(this));
     }
 
     /**
@@ -67,7 +81,11 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     public void onStop() {
     }
 
-    //保存状态，
+    /**
+     * 保存状态，
+     *
+     * @param outState
+     */
     public void onSaveInstanceState(Bundle outState) {
 
     }
@@ -81,7 +99,6 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
-        LogUtils.e("onDestroy");
         cancelAllHttp();
         mvpView = null;
     }
