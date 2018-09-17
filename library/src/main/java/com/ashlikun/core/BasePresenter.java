@@ -2,6 +2,7 @@ package com.ashlikun.core;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,6 +47,18 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
         this.mvpView = new WeakReference<>(mvpView);
         mProxyView = (T) Proxy.newProxyInstance(mvpView.getClass().getClassLoader(),
                 mvpView.getClass().getInterfaces(), new MvpViewHandler(this));
+    }
+
+    /**
+     * 获取观察者
+     *
+     * @return
+     */
+    public LifecycleOwner getLifecycleOwner() {
+        if (mvpView != null && mvpView.get() != null && mvpView.get() instanceof LifecycleOwner) {
+            return (LifecycleOwner) mvpView.get();
+        }
+        return null;
     }
 
     /**
