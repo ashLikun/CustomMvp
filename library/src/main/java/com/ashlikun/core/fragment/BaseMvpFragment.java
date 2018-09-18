@@ -88,6 +88,22 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
         return presenter;
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (presenter != null) {
+            presenter.onHiddenChanged(hidden);
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (presenter != null) {
+            presenter.onHiddenChanged(!isVisibleToUser);
+        }
+    }
+
     /**
      * 处理Activity发送过来的事件
      *

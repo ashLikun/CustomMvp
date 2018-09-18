@@ -134,4 +134,11 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     public void onDispatcherMessage(int what, Bundle bundle) {
 
     }
+
+    /**
+     * 显示或者隐藏时候，或者viewpager切换时候，这个方法是Fragment才有的
+     *
+     * @param hidden
+     */
+    public abstract void onHiddenChanged(boolean hidden);
 }
