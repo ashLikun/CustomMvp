@@ -19,7 +19,7 @@ import java.lang.reflect.Proxy;
  * 创建时间: 16:21 Administrator
  * 邮箱　　：496546144@qq.com
  * <p>
- * 功能介绍：
+ * 功能介绍：P层的业务
  */
 public abstract class BasePresenter<T extends IBaseView> implements LifecycleObserver, OnDispatcherMessage {
     /**
@@ -138,7 +138,9 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     /**
      * 显示或者隐藏时候，或者viewpager切换时候，这个方法是Fragment才有的
      *
-     * @param hidden
+     * @param hidden 是否是隐藏
      */
-    public abstract void onHiddenChanged(boolean hidden);
+    public void onHiddenChanged(boolean hidden) {
+
+    }
 }
