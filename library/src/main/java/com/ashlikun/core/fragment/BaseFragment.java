@@ -19,7 +19,7 @@ import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
-import com.ashlikun.supertoobar.SupperToolBar;
+import com.ashlikun.supertoobar.SuperToolBar;
 import com.ashlikun.utils.ui.StatusBarCompat;
 import com.ashlikun.utils.ui.UiUtils;
 
@@ -77,7 +77,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
      */
     protected boolean isRecycle = false;
     @Nullable
-    protected SupperToolBar toolbar;
+    protected SuperToolBar toolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

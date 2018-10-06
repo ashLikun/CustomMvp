@@ -19,7 +19,7 @@ import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
-import com.ashlikun.supertoobar.SupperToolBar;
+import com.ashlikun.supertoobar.SuperToolBar;
 import com.ashlikun.utils.other.StringUtils;
 import com.ashlikun.utils.ui.StatusBarCompat;
 
@@ -59,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
     private LoadDialog loadDialog;
 
     @Nullable
-    protected SupperToolBar toolbar;
+    protected SuperToolBar toolbar;
     protected StatusBarCompat statusBar;
 
     @Override
