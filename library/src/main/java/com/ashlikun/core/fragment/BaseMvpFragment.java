@@ -3,6 +3,9 @@ package com.ashlikun.core.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.core.factory.PresenterFactoryImp;
@@ -25,21 +28,40 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     public P presenter;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        if (!isRecycle || presenter == null) {
+            presenter = initPresenter();
+            if (presenter != null) {
+                //时机要提前
+                if (this instanceof IBaseView) {
+                    presenter.onAttachView((IBaseView) this);
+                } else {
+                    new Exception("BaseMvpFragment 必须实现 BaseView");
+                }
+                Intent intent = new Intent();
+                if (getArguments() != null) {
+                    intent.putExtras(getArguments());
+                }
+                presenter.parseIntent(intent);
+            }
+        }
+        return view;
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (!isRecycle) {
-            if (this instanceof IBaseView) {
-                if (presenter != null) {
-                    presenter.onAttachView((IBaseView) this);
-                    Intent intent = new Intent();
-                    if (getArguments() != null) {
-                        intent.putExtras(getArguments());
-                    }
-                    presenter.parseIntent(intent);
-                    presenter.onCreate(savedInstanceState);
-                }
-            } else {
-                new Exception("BaseMvpFragment 必须实现 BaseView");
+            if (presenter != null) {
+                presenter.onCreate(savedInstanceState);
             }
         }
     }
@@ -47,7 +69,6 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     @Override
     protected void baseInitView() {
         super.baseInitView();
-        presenter = initPresenter();
         getLifecycle().addObserver(presenter);
         presenter.lifecycle = getLifecycle();
     }

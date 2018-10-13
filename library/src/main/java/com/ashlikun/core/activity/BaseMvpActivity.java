@@ -28,37 +28,33 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (this instanceof IBaseView) {
-            if (presenter != null) {
+        presenter = initPresenter();
+        if (presenter != null) {
+            if (this instanceof IBaseView) {
+                //时机要提前
                 presenter.onAttachView((IBaseView) this);
-                presenter.parseIntent(getIntent());
-                presenter.onCreate(savedInstanceState);
+            } else {
+                new RuntimeException(this.getClass().getSimpleName() + " 必须实现 BaseView");
             }
-        } else {
-            throw new RuntimeException(this.getClass().getSimpleName() + " 必须实现 BaseView");
+        }
+        super.onCreate(savedInstanceState);
+        if (presenter != null) {
+            presenter.onCreate(savedInstanceState);
         }
     }
+
 
     @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        if (this instanceof IBaseView) {
-            if (presenter != null) {
-                presenter.onAttachView((IBaseView) this);
-                presenter.parseIntent(getIntent());
-                presenter.onCreate(null);
-            }
-        } else {
-            new RuntimeException(this.getClass().getSimpleName() + " 必须实现 BaseView");
+    public void parseIntent(Intent intent) {
+        super.parseIntent(intent);
+        if (presenter != null) {
+            presenter.parseIntent(intent);
         }
     }
-
 
     @Override
     protected void baseInitView() {
         super.baseInitView();
-        presenter = initPresenter();
         getLifecycle().addObserver(presenter);
         presenter.lifecycle = getLifecycle();
     }
