@@ -65,6 +65,7 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
      * 解析意图数据
      */
     public void parseIntent(Intent intent) {
+
     }
 
     /**

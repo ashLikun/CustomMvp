@@ -30,6 +30,8 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
     protected void onCreate(Bundle savedInstanceState) {
         presenter = initPresenter();
         if (presenter != null) {
+            getLifecycle().addObserver(presenter);
+            presenter.lifecycle = getLifecycle();
             if (this instanceof IBaseView) {
                 //时机要提前
                 presenter.onAttachView((IBaseView) this);
@@ -50,13 +52,6 @@ public abstract class BaseMvpActivity<P extends BasePresenter>
         if (presenter != null) {
             presenter.parseIntent(intent);
         }
-    }
-
-    @Override
-    protected void baseInitView() {
-        super.baseInitView();
-        getLifecycle().addObserver(presenter);
-        presenter.lifecycle = getLifecycle();
     }
 
 

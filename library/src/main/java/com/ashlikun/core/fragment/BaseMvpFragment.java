@@ -3,9 +3,6 @@ package com.ashlikun.core.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.core.factory.PresenterFactoryImp;
@@ -30,13 +27,6 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
         if (!isRecycle || presenter == null) {
             presenter = initPresenter();
             if (presenter != null) {
@@ -51,9 +41,10 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
                     intent.putExtras(getArguments());
                 }
                 presenter.parseIntent(intent);
+                getLifecycle().addObserver(presenter);
+                presenter.lifecycle = getLifecycle();
             }
         }
-        return view;
     }
 
     @Override
@@ -69,8 +60,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     @Override
     protected void baseInitView() {
         super.baseInitView();
-        getLifecycle().addObserver(presenter);
-        presenter.lifecycle = getLifecycle();
+
     }
 
     @Override
