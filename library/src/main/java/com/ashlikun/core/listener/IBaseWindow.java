@@ -15,7 +15,7 @@ import com.ashlikun.loadswitch.OnLoadSwitchClick;
  * 功能介绍：一个窗口要实现的接口
  */
 
-public interface IBaseWindow {
+public interface IBaseWindow extends OnLoadSwitchClick {
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:06
@@ -102,4 +102,14 @@ public interface IBaseWindow {
      * @return
      */
     <T extends View> T f(@IdRes int id);
+
+    @Override
+    default void onRetryClick(ContextData data) {
+
+    }
+
+    @Override
+    default void onEmptyClick(ContextData data) {
+
+    }
 }
