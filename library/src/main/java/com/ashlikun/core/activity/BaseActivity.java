@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -12,7 +11,6 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
 import com.ashlikun.core.listener.IBaseWindow;
 import com.ashlikun.core.listener.OnDispatcherMessage;
-import com.ashlikun.customdialog.LoadDialog;
 import com.ashlikun.loadswitch.ContextData;
 import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
@@ -20,7 +18,6 @@ import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
 import com.ashlikun.supertoobar.SuperToolBar;
-import com.ashlikun.utils.other.StringUtils;
 import com.ashlikun.utils.ui.StatusBarCompat;
 
 /**
@@ -49,16 +46,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      * 方法功能：布局切换
      */
     public LoadSwitchService switchService = null;
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:13
-     * <p>
-     * 方法功能：用于显示提示
-     */
-    private LoadDialog loadDialog;
-
-    @Nullable
     protected SuperToolBar toolbar;
     protected StatusBarCompat statusBar;
 
@@ -268,64 +255,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
     public void onLowMemory() {
         super.onLowMemory();
         cancelAllHttp();
-    }
-
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:10
-     * <p>
-     * 方法功能：显示对话框，用于网络请求
-     */
-
-    public void showProgress(String msg, boolean isCancelable) {
-        // 判断是否加载对话框
-        if (!isFinishing()) {
-            if (loadDialog == null) {
-                loadDialog = new LoadDialog(this);
-            }
-            loadDialog.setContent(StringUtils.dataFilter(msg, getResources().getString(R.string.loadding)));
-            loadDialog.setCancelable(isCancelable);
-            try {
-                loadDialog.show();
-            } catch (Exception e) {
-
-            }
-
-        }
-    }
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:10
-     * <p>
-     * 方法功能：显示对话框，用于网络请求
-     */
-    public void showProgress(String msg) {
-        showProgress(msg, false);
-    }
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:10
-     * <p>
-     * 方法功能：显示对话框，用于网络请求
-     */
-    public void showProgress() {
-        showProgress(null);
-    }
-
-    /**
-     * 作者　　: 李坤
-     * 创建时间: 2016/9/22 11:10
-     * <p>
-     * 方法功能：销毁对话框
-     */
-    public void hintProgress() {
-        if (loadDialog != null) {
-            loadDialog.dismiss();
-            loadDialog = null;
-        }
     }
 
     @Override

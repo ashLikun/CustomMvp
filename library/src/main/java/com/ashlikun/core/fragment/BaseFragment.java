@@ -223,28 +223,6 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
         cancelAllHttp();
     }
 
-    /**
-     * 显示对话框，用于网络请求
-     *
-     * @param msg
-     * @param isCancelable
-     */
-    public void showProgress(String msg, boolean isCancelable) {
-        activity.showProgress(msg, isCancelable);
-    }
-
-    public void showProgress(String msg) {
-        showProgress(msg, false);
-    }
-
-    public void showProgress() {
-        showProgress(null);
-    }
-
-    public void hintProgress() {
-        activity.hintProgress();
-    }
-
     @Override
     public void showLoading(ContextData data) {
         if (switchService != null) {

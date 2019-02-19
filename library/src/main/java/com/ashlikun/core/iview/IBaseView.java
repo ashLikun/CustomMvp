@@ -15,26 +15,6 @@ import com.ashlikun.loadswitch.LoadSwitchService;
 public interface IBaseView {
     Context getContext();
 
-    /**
-     * 显示对话框，用于网络请求
-     */
-    void showProgress(String msg, boolean isCancelable);
-
-    /**
-     * 显示对话框
-     */
-    void showProgress(String msg);
-
-    /**
-     * 显示对话框
-     */
-    void showProgress();
-
-    /**
-     * 关闭加载中对话框
-     */
-    void hintProgress();
-
 
     /**
      * 清空数据  一般在列表使用  但是也可以作为其他的界面使用
