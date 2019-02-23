@@ -62,6 +62,17 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     }
 
     /**
+     * 获取
+     * @return
+     */
+    public LifecycleOwner getLifecycleOwner() {
+        if (mvpView != null && mvpView.get() != null && mvpView.get() instanceof LifecycleOwner) {
+            return (LifecycleOwner) mvpView.get();
+        }
+        return null;
+    }
+
+    /**
      * 解析意图数据
      */
     public void parseIntent(Intent intent) {
