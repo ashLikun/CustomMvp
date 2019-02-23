@@ -1,15 +1,18 @@
 package com.ashlikun.core;
 
+import android.app.Activity;
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.ashlikun.core.iview.IBaseView;
 import com.ashlikun.core.listener.OnDispatcherMessage;
 import com.ashlikun.okhttputils.http.OkHttpUtils;
+import com.ashlikun.utils.main.ActivityUtils;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Proxy;
@@ -62,14 +65,22 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     }
 
     /**
-     * 获取
+     * 获取Activity
+     *
      * @return
      */
-    public LifecycleOwner getLifecycleOwner() {
-        if (mvpView != null && mvpView.get() != null && mvpView.get() instanceof LifecycleOwner) {
-            return (LifecycleOwner) mvpView.get();
+    public Activity getActivity() {
+        Activity activity = null;
+        if (mvpView != null && mvpView.get() != null) {
+            if (mvpView.get() instanceof Activity) {
+                return (Activity) mvpView.get();
+            } else if ((activity = ActivityUtils.getActivity(mvpView.get().getContext())) != null) {
+                return activity;
+            } else if (mvpView.get() instanceof Fragment) {
+                return ((Fragment) mvpView.get()).getActivity();
+            }
         }
-        return null;
+        return activity;
     }
 
     /**
