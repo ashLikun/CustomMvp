@@ -80,8 +80,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
         if (isStatusBarEnable()) {
             statusBar = new StatusBarCompat(this);
             //设置状态栏颜色兼容,默认只是颜色
-            if (isStatusTranslucent()) {
-                statusBar.translucentStatusBar();
+            if (isStatusTranslucent() || isStatusTranslucentAndroidMHalf()) {
+                statusBar.translucentStatusBar(isStatusTranslucentAndroidMHalf());
             } else {
                 statusBar.setStatusBarColor(getStatusBarColor());
             }
@@ -192,6 +192,17 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
         return false;
     }
 
+    /**
+     * @author　　: 李坤
+     * 创建时间: 2019/3/1 0:05
+     * 邮箱　　：496546144@qq.com
+     * <p>
+     * 功能介绍：6.0以下是否绘制半透明,因为不能设置状态栏字体颜色
+     */
+
+    public boolean isStatusTranslucentAndroidMHalf() {
+        return false;
+    }
 
     /**
      * 作者　　: 李坤
