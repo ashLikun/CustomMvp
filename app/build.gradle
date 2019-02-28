@@ -62,7 +62,7 @@ dependencies {
     //MD风格的进度条
     implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
     //公共工具
-    implementation 'com.github.ashLikun:CommonUtils:1.4.8'
+    implementation 'com.github.ashLikun:CommonUtils:2.0.8'
     //标题栏
     implementation ('com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion){
         // if you don't use android.app.Fragment you can exclude support for them
