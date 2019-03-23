@@ -44,6 +44,8 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
      * 创建时间: 2016/9/22 11:02
      * <p>
      * 方法功能： 把view也创建  在onCreate之前
+     * 如果fragment使用缓存，那么这个方法无视缓存
+     * * 一般在fragment的时候使用这个方法注册一些监听，因为这个方法在使用缓存的情况下会与onDestroy形成对应关系
      */
 
     public void onAttachView(T mvpView) {

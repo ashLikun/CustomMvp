@@ -27,7 +27,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!isRecycle || presenter == null) {
+        if (presenter == null) {
             presenter = initPresenter();
             if (presenter != null) {
                 //时机要提前
@@ -43,6 +43,12 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
                 presenter.parseIntent(intent);
                 getLifecycle().addObserver(presenter);
                 presenter.lifecycle = getLifecycle();
+            }
+        } else {
+            if (this instanceof IBaseView) {
+                presenter.onAttachView((IBaseView) this);
+            } else {
+                new Exception("BaseMvpFragment 必须实现 BaseView");
             }
         }
     }
