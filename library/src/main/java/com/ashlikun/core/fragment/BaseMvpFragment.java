@@ -23,6 +23,10 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
         BaseFragment {
 
     public P presenter;
+    /**
+     * setUserVisibleHint调用的时候Presenter是否创建，如果没有创建，那么在create的时候要再调用一下
+     */
+    private boolean setUserVisibleHintOk = true;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +63,10 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
         if (!isRecycle) {
             if (presenter != null) {
                 presenter.onCreate(savedInstanceState);
+                if (!setUserVisibleHintOk) {
+                    setUserVisibleHintOk = true;
+                    presenter.setUserVisibleHint(getUserVisibleHint());
+                }
             }
         }
     }
@@ -116,8 +124,11 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        //这个时候View可能还没创建
         if (presenter != null) {
-            presenter.onHiddenChanged(!isVisibleToUser);
+            presenter.setUserVisibleHint(isVisibleToUser);
+        } else {
+            setUserVisibleHintOk = false;
         }
     }
 

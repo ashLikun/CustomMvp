@@ -324,4 +324,8 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
     public void onDispatcherMessage(int what, Bundle bundle) {
 
     }
+
+    public boolean getUserVisibleHint() {
+        return true;
+    }
 }

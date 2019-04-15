@@ -53,5 +53,14 @@ public interface IBaseView {
      */
     public void showEmpty(ContextData data);
 
+    /**
+     * Fragment是否选中，只有Fragment才有
+     * 一般是ViewPager嵌套Fragment
+     *
+     * @return true:选中，false：未选中
+     */
+    public boolean getUserVisibleHint();
+
     void finish();
+
 }

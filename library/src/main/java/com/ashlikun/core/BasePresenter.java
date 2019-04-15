@@ -160,12 +160,23 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
 
     }
 
+
     /**
      * 显示或者隐藏时候，或者viewpager切换时候，这个方法是Fragment才有的
      *
-     * @param hidden 是否是隐藏
+     * @param hidden 是否隐藏
      */
     public void onHiddenChanged(boolean hidden) {
+
+    }
+
+    /**
+     * 对应Fragment,这个方法是Fragment才有的
+     * 一般是ViewPager的切换
+     *
+     * @param isVisibleToUser 是否选中
+     */
+    public void setUserVisibleHint(boolean isVisibleToUser) {
 
     }
 }
