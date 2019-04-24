@@ -34,14 +34,6 @@ android {
             }
         }
     }
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-        maven {
-            url "https://jitpack.io"
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -50,31 +42,25 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation rootProject.ext.v4Version
     implementation rootProject.ext.designVersion
-    implementation rootProject.ext.v7AppCompat
-    implementation rootProject.ext.v13Version
     //数字进度条
-    implementation 'com.github.ashLikun.frame:numberprogressbar:' + rootProject.ext.frameVersion
+    implementation 'com.github.ashLikun.frame:numberprogressbar:3.0.0'
     implementation 'com.github.ashLikun:CircleProgressView:+'
     //按钮
-    implementation 'com.github.ashLikun.frame:flatbutton:' + rootProject.ext.frameVersion
+    implementation 'com.github.ashLikun.frame:flatbutton:3.0.0'
     //MD风格的进度条
     implementation 'me.zhanghai.android.materialprogressbar:library:1.4.2'
     //公共工具
-    implementation 'com.github.ashLikun:CommonUtils:2.0.8'
+    implementation 'com.github.ashLikun:CommonUtils:+'
     //标题栏
-    implementation ('com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion){
-        // if you don't use android.app.Fragment you can exclude support for them
-        exclude module: "support-v13"
-    }
+    implementation 'com.github.ashLikun.frame:supertoobar:3.0.0'
     //习惯的对话框
     implementation 'com.github.ashLikun:CustomDialog:+'
     //布局切换神器
     implementation 'com.github.ashLikun:LoadSwitch:+'
     //Okhttp工具
     implementation 'com.github.ashLikun:OkHttpUtils:+'
-    implementation ('com.alibaba:arouter-api:+') {
+    implementation('com.alibaba:arouter-api:+') {
         // if you don't use android.app.Fragment you can exclude support for them
         exclude module: "support-v13"
     }

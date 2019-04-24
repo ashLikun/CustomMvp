@@ -1,6 +1,6 @@
 package com.ashlikun.core.simple;
 
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.utils.AppUtils;

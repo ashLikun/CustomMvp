@@ -15,14 +15,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
-        maven {
-            url "https://jitpack.io"
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -33,9 +25,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly rootProject.ext.v4Version
     compileOnly rootProject.ext.v7AppCompat
-
-    compileOnly 'com.github.ashLikun.frame:supertoobar:' + rootProject.ext.frameVersion
-    compileOnly 'com.github.ashLikun:CommonUtils:2.0.8'
+    compileOnly 'com.github.ashLikun.frame:supertoobar:3.0.0'
+    compileOnly 'com.github.ashLikun:CommonUtils:+'
     compileOnly 'com.github.ashLikun:CircleProgressView:+'
     compileOnly 'com.github.ashLikun:CustomDialog:+'
     compileOnly 'com.github.ashLikun:LoadSwitch:+'
