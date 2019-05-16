@@ -1,11 +1,13 @@
 package com.ashlikun.core.activity;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ashlikun.core.R;
@@ -179,7 +181,11 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
      * 方法功能：获取状态栏颜色
      */
     public int getStatusBarColor() {
-        return getResources().getColor(R.color.status_color);
+        //获取主题颜色
+        TypedArray array = getTheme().obtainStyledAttributes(new int[]{R.attr.statusColorCustom});
+        int color = array.getColor(0, 0xffffffff);
+        array.recycle();
+        return color;
     }
 
     /**
