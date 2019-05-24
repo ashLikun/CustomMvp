@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.ashlikun.core.MvpUtils;
 import com.ashlikun.core.R;
 import com.ashlikun.core.listener.IBaseWindow;
 import com.ashlikun.core.listener.OnDispatcherMessage;
 import com.ashlikun.loadswitch.ContextData;
-import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
