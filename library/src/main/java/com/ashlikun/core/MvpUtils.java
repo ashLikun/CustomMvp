@@ -23,8 +23,8 @@ public class MvpUtils {
     public static Class<? extends OnLoadLayoutListener> switchLayoutListener = null;
 
 
-    public static void init() {
-
+    public static void init(Class<? extends OnLoadLayoutListener> listener) {
+        switchLayoutListener = listener;
     }
 
     /**
