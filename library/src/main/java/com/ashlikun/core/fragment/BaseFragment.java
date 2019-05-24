@@ -107,7 +107,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
         View viewSwitch = getSwitchRoot();
         if (viewSwitch != null) {
             switchService = LoadSwitch.get()
-                    .register(viewSwitch, new DefaultOnLoadLayoutListener(getContext(), getOnLoadSwitchClick()));
+                    .register(viewSwitch, MvpUtils.getSwitchLayoutListener(getContext(), this));
         }
     }
 

@@ -130,7 +130,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
         View view = getSwitchRoot();
         if (view != null) {
             switchService = LoadSwitch.get()
-                    .register(view, new DefaultOnLoadLayoutListener(this, getOnLoadSwitchClick()));
+                    .register(view, MvpUtils.getSwitchLayoutListener(this, this));
         }
     }
 
