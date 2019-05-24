@@ -10,11 +10,11 @@ import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.ashlikun.core.MvpUtils;
 import com.ashlikun.core.R;
 import com.ashlikun.core.listener.IBaseWindow;
 import com.ashlikun.core.listener.OnDispatcherMessage;
 import com.ashlikun.loadswitch.ContextData;
-import com.ashlikun.loadswitch.DefaultOnLoadLayoutListener;
 import com.ashlikun.loadswitch.LoadSwitch;
 import com.ashlikun.loadswitch.LoadSwitchService;
 import com.ashlikun.loadswitch.OnLoadSwitchClick;
@@ -33,6 +33,8 @@ import com.ashlikun.utils.ui.StatusBarCompat;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements IBaseWindow, OnDispatcherMessage {
+
+
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:14
@@ -131,7 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseWin
         View view = getSwitchRoot();
         if (view != null) {
             switchService = LoadSwitch.get()
-                    .register(view, new DefaultOnLoadLayoutListener(this, getOnLoadSwitchClick()));
+                    .register(view, MvpUtils.getSwitchLayoutListener(this, this));
         }
     }
 
