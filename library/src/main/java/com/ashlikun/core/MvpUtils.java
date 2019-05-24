@@ -23,12 +23,13 @@ public class MvpUtils {
     public static Class<? extends OnLoadLayoutListener> switchLayoutListener = null;
 
 
-    public static void init() {
-
+    public static void init(Class<? extends OnLoadLayoutListener> listener) {
+        switchLayoutListener = listener;
     }
 
     /**
      * 通过反射 获取设置的全局OnLoadLayoutListener
+     *
      * @param context
      * @param window
      * @return
