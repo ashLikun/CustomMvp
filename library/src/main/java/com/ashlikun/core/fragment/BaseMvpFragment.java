@@ -125,7 +125,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         //这个时候View可能还没创建
-        if (presenter != null) {
+        if (rootView != null && presenter != null) {
             presenter.setUserVisibleHint(isVisibleToUser);
         } else {
             setUserVisibleHintOk = false;
