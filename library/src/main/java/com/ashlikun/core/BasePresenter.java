@@ -144,9 +144,7 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
         cancelAllHttp();
-        mvpView = null;
     }
-
 
     /**
      * 销毁网络访问

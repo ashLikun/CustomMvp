@@ -2,6 +2,7 @@ package com.ashlikun.core.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 
 import com.ashlikun.core.BasePresenter;
