@@ -1,13 +1,14 @@
 package com.ashlikun.core;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
-import android.content.Intent;
-import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 
 import com.ashlikun.core.iview.IBaseView;
 import com.ashlikun.core.listener.OnDispatcherMessage;
@@ -34,6 +35,11 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
      */
     private T mProxyView;
     public Lifecycle lifecycle;
+
+    /**
+     * 数据是否初始化过
+     */
+    public boolean dataInit = false;
 
     public T getView() {
         return mProxyView;
