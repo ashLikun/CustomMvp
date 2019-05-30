@@ -33,7 +33,12 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
      * 利用动态代理实现以防null
      */
     private T mProxyView;
-    public Lifecycle lifecycle;
+    public Lifecycle lifecycl;
+
+    /**
+     * 数据是否初始化过
+     */
+    public boolean dataInit = false;
 
     public T getView() {
         return mProxyView;
