@@ -60,12 +60,14 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (presenter != null) {
-            presenter.onCreate(savedInstanceState);
-            if (!setUserVisibleHintOk) {
-                setUserVisibleHintOk = true;
-                presenter.setUserVisibleHint(getUserVisibleHint());
+        if (!isRecycle) {
+            if (presenter != null) {
+                presenter.onCreate(savedInstanceState);
             }
+        }
+        if (!setUserVisibleHintOk) {
+            setUserVisibleHintOk = true;
+            presenter.setUserVisibleHint(getUserVisibleHint());
         }
     }
 
