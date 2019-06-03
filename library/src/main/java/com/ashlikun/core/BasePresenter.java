@@ -147,6 +147,15 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     }
 
     /**
+     * mvpview是否为null
+     *
+     * @return
+     */
+    public boolean isMvpViewNull() {
+        return mvpView == null;
+    }
+
+    /**
      * 销毁网络访问
      */
     public void cancelAllHttp() {

@@ -2,8 +2,7 @@ package com.ashlikun.core.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.core.factory.PresenterFactoryImp;
@@ -18,8 +17,6 @@ import java.lang.reflect.ParameterizedType;
  * <p>
  * 功能介绍：封装MvpFragment
  */
-
-
 public abstract class BaseMvpFragment<P extends BasePresenter> extends
         BaseFragment {
 
@@ -64,11 +61,11 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
         if (!isRecycle) {
             if (presenter != null) {
                 presenter.onCreate(savedInstanceState);
-                if (!setUserVisibleHintOk) {
-                    setUserVisibleHintOk = true;
-                    presenter.setUserVisibleHint(getUserVisibleHint());
-                }
             }
+        }
+        if (!setUserVisibleHintOk) {
+            setUserVisibleHintOk = true;
+            presenter.setUserVisibleHint(getUserVisibleHint());
         }
     }
 
@@ -126,7 +123,10 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         //这个时候View可能还没创建
-        if (rootView != null && presenter != null) {
+        if (getView() != null && presenter != null) {
+            if (presenter.isMvpViewNull()) {
+                presenter.onAttachView((IBaseView) this);
+            }
             presenter.setUserVisibleHint(isVisibleToUser);
         } else {
             setUserVisibleHintOk = false;
