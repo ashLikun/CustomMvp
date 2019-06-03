@@ -2,7 +2,6 @@ package com.ashlikun.core.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.ashlikun.core.BasePresenter;
 import com.ashlikun.core.factory.PresenterFactoryImp;
@@ -27,7 +26,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     private boolean setUserVisibleHintOk = true;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (presenter == null) {
             presenter = initPresenter();
@@ -56,7 +55,7 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (!isRecycle) {
             if (presenter != null) {
