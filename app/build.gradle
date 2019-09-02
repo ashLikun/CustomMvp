@@ -42,7 +42,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation rootProject.ext.designVersion
+    api rootProject.ext.designVersion
     //数字进度条
     implementation 'com.github.ashLikun.frame:numberprogressbar:3.0.0'
     implementation 'com.github.ashLikun:CircleProgressView:+'

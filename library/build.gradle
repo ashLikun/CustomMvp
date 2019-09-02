@@ -23,14 +23,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.ext.designVersion
-    compileOnly 'com.github.ashLikun.frame:supertoobar:3.0.0'
-    compileOnly 'com.github.ashLikun:CommonUtils:+'
-    compileOnly 'com.github.ashLikun:CircleProgressView:+'
-    compileOnly 'com.github.ashLikun:CustomDialog:+'
-    compileOnly 'com.github.ashLikun:LoadSwitch:+'
-    compileOnly 'com.github.ashLikun:OkHttpUtils:+'
-    compileOnly 'com.alibaba:arouter-api:+'
+    implementation rootProject.ext.designVersion
+    implementation 'com.github.ashLikun.frame:supertoobar:3.0.1'
+    implementation 'com.github.ashLikun:CommonUtils:+'
+    implementation 'com.github.ashLikun:CircleProgressView:+'
+    implementation 'com.github.ashLikun:CustomDialog:+'
+    implementation 'com.github.ashLikun:LoadSwitch:+'
+    implementation 'com.github.ashLikun:OkHttpUtils:+'
+    implementation 'com.alibaba:arouter-api:+'
 }
 
 apply from: '../maven.gradle'
