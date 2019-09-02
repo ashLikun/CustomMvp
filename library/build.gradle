@@ -24,7 +24,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.ext.designVersion
-    implementation 'com.github.ashLikun.frame:supertoobar:3.0.1'
+    implementation 'com.github.ashLikun.frame:supertoobar:3.0.0'
     implementation 'com.github.ashLikun:CommonUtils:+'
     implementation 'com.github.ashLikun:CircleProgressView:+'
     implementation 'com.github.ashLikun:CustomDialog:+'
