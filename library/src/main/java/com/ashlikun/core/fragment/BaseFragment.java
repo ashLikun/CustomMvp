@@ -1,5 +1,6 @@
 package com.ashlikun.core.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +53,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
      */
 
 
-    protected BaseActivity activity;
+    protected Activity activity;
     /**
      * 作者　　: 李坤
      * 创建时间: 2016/9/22 11:14
@@ -83,7 +84,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activity = (BaseActivity) getActivity();
+        activity = getActivity();
         ARouter.getInstance().inject(this);
     }
 
@@ -143,8 +144,16 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
         return rootView.findViewById(id);
     }
 
+    public BaseActivity getActivitySupper() {
+        if (activity instanceof BaseActivity) {
+            return ((BaseActivity) activity);
+        } else {
+            return null;
+        }
+    }
+
     public StatusBarCompat getActivityStatusBar() {
-        return activity.getStatusBar();
+        return getActivitySupper().getStatusBar();
     }
 
     /**
@@ -279,6 +288,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
      * @param bundle    事件传递的数据
      */
     public void sendMsgToActivity(int what, Bundle bundle) {
+        BaseActivity activity = getActivitySupper();
         if (activity != null) {
             activity.onDispatcherMessage(what, bundle);
         }
