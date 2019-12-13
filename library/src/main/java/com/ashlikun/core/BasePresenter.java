@@ -29,7 +29,7 @@ public abstract class BasePresenter<T extends IBaseView> implements LifecycleObs
     /**
      * 软引用view
      */
-    WeakReference<T> mvpView;
+    public WeakReference<T> mvpView;
     /**
      * 利用动态代理实现以防null
      */

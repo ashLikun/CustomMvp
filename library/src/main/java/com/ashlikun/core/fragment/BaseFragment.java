@@ -78,7 +78,7 @@ public abstract class BaseFragment extends Fragment implements IBaseWindow, OnDi
      * 方法功能：是否是回收利用的Fragment
      */
     protected boolean isRecycle = false;
-    @Nullable
+    
     protected SuperToolBar toolbar;
 
     @Override
