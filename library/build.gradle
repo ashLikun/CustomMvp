@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.github.ashLikun:LoadSwitch:+'
     implementation 'com.github.ashLikun:OkHttpUtils:+'
     implementation 'com.alibaba:arouter-api:+'
+    api "com.github.ashLikun:CustomBase:+"
 }
 
 apply from: '../maven.gradle'

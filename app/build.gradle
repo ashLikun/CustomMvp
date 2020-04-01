@@ -6,7 +6,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.ashlikun.core.simple"
+        applicationId "com.ashlikun.core.mvpsimple"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -68,8 +68,9 @@ dependencies {
     }
     annotationProcessor 'com.alibaba:arouter-compiler:+'
     implementation project(':library')
-    compile "androidx.core:core-ktx:+"
+    implementation "androidx.core:core-ktx:+"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "com.github.ashLikun:CustomBase:+"
 }
 repositories {
     mavenCentral()

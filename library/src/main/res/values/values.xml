@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!--主题属性-->
-    <attr name="statusColorCustom" format="color" />
-</resources>

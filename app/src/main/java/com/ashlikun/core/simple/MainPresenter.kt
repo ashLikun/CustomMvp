@@ -17,7 +17,6 @@ class MainPresenter : BasePresenter<IMainView>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mvpView = null
         val aaa = view.findSize()
         LogUtils.e("onCreate")
     }
