@@ -34,7 +34,7 @@ dependencies {
     compileOnly 'com.github.ashLikun:LoadSwitch:+'
     compileOnly 'com.github.ashLikun:OkHttpUtils:+'
     compileOnly 'com.alibaba:arouter-api:+'
-    compileOnly "com.github.ashLikun:CustomBase:+"
+    implementation "com.github.ashLikun:CustomBase:+"
 }
 
 apply from: '../maven.gradle'
